@@ -20,3 +20,6 @@ CTRL+SHIFT+P and Run Test Task - run loadtest should run the loadtest. They will
 # Challenges
 
 I will add different challenges here...
+
+
+https://user-images.githubusercontent.com/1174441/74938562-88c2a180-53ee-11ea-959c-7c8383fdf315.png

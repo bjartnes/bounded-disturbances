@@ -28,11 +28,8 @@
         {
             "label": "watch",
             "command": "dotnet watch -p api-under-test/api-under-test.csproj run",
-            "type": "process",
+            "type": "shell",
             "group": "build",
-            "args": [
-                "/consoleloggerparameters:NoSummary"
-            ],
             "problemMatcher": "$msCompile"
         }, {
             "label": "run web api",

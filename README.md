@@ -15,3 +15,8 @@ It should work to use CTRL+SHIFT+P and select Run Build Task - watch to start th
 The API will reload once changed and should be exposed at https://localhost:5001/weatherforecast
 
 CTRL+SHIFT+P and Run Test Task - run loadtest should run the loadtest. They will take approximately 10 seconds to run. 
+
+
+# Challenges
+
+I will add different challenges here...

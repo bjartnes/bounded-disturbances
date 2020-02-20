@@ -31,8 +31,8 @@ namespace api_under_test.Controllers
         {
             var policy = Policy.Handle<Exception>().RetryAsync(4);
             var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
-                with.Latency(TimeSpan.FromSeconds(10))
-                    .InjectionRate(0.02)
+                with.Latency(TimeSpan.FromSeconds(1))
+                    .InjectionRate(0.1)
                     .Enabled(true));
             var mix = Policy.WrapAsync(policy, chaosPolicy);
             return await mix.ExecuteAsync(GetForecasts);
@@ -41,7 +41,7 @@ namespace api_under_test.Controllers
         // Should probably get them from yr 
         private async Task<IEnumerable<WeatherForecast>> GetForecasts()
         {
-            await Task.Delay(100);
+            await Task.Delay(20);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

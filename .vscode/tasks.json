@@ -27,13 +27,10 @@
         },
         {
             "label": "watch",
-            "command": "dotnet",
+            "command": "dotnet watch -p api-under-test/api-under-test.csproj run",
             "type": "process",
+            "group": "build",
             "args": [
-                "watch",
-                "run",
-                "${workspaceFolder}/api-under-test/api-under-test.csproj",
-                "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
             "problemMatcher": "$msCompile"

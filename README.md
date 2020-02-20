@@ -13,7 +13,9 @@ This runs on dotnet core in VS Code and should work on Windows/Linux/Mac.
 
 To run the workshop clone the repo, install dotnet core 3.1 or greater from https://dotnet.microsoft.com/download
 
-It should work to use CTRL+SHIFT+P and select Run Build Task - watch to start the API.
+It should work to use CTRL+SHIFT+P and select Run Build Task - watch to start the API but it does not.
+
+Run "dotnet watch -p api-under-test/api-under-test.csproj run" in the console and make sure it starts listening on localhost:5001
 The API will reload once changed and should be exposed at https://localhost:5001/weatherforecast
 
 CTRL+SHIFT+P and Run Test Task - run loadtest should run the loadtest. They will take approximately 10 seconds to run. 

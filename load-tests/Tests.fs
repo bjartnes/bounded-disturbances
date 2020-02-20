@@ -24,14 +24,15 @@ let ``XUnit test`` () =
 
     let assertions = [
        Assertion.forStep("simple step", (fun stats -> stats.OkCount > 200), "Need 200 requests to have some data");
-       Assertion.forStep("simple step", (fun stats -> stats.Percent95 <= 200), "95 percentil should be fast")]
+       Assertion.forStep("simple step", (fun stats -> stats.FailCount < 5), "Max five errors");
+       Assertion.forStep("simple step", (fun stats -> stats.Percent95 <= 200), "95 percentile should be fast")]
 
 
     let scenario =
         Scenario.create "xunit hello world" [step1]
         |> Scenario.withConcurrentCopies 50
         |> Scenario.withOutWarmUp
-        |> Scenario.withDuration(TimeSpan.FromSeconds 10.0)
+        |> Scenario.withDuration(TimeSpan.FromSeconds 4.0)
         |> Scenario.withAssertions assertions 
 
     NBomberRunner.registerScenarios [scenario] |> NBomberRunner.runTest

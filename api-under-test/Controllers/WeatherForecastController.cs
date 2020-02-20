@@ -29,12 +29,13 @@ namespace api_under_test.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            var policy = Policy.Handle<Exception>().RetryAsync(4);
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
+            var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(100));
             var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
                     .InjectionRate(0.1)
                     .Enabled(true));
-            var mix = Policy.WrapAsync(policy, chaosPolicy);
+            var mix = Policy.WrapAsync(retryPolicy, timeoutPolicy, chaosPolicy);
             return await mix.ExecuteAsync(GetForecasts);
         }
 

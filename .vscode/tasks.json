@@ -60,6 +60,24 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "run k6test Windows",
+            "command": "cmd /c --% docker run -i --rm loadimpact/k6 run - <k6-tests\\challenge0test.js",
+            "type": "shell",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "run k6test Linux",
+            "command": "docker run -i --rm loadimpact/k6 run - <k6-tests/challenge0test.js",
+            "type": "shell",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent"
+            }
         }
 
     ]

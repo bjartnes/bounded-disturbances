@@ -30,7 +30,7 @@ namespace api_under_test.Controllers
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
             var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
-            var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(100));
+            var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(300));
             var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
                     .InjectionRate(0.1)

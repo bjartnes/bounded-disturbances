@@ -13,7 +13,7 @@ open NBomber.Http.FSharp
 open NBomber.Http.FSharp.Http
 
 [<Fact>]
-let ``XUnit test`` () =
+let ``Challenge 1`` () =
 
     let step1 = HttpStep.create ("simple step", (fun (_sc: StepContext<unit> ) -> Http.createRequest "GET" "https://localhost:5001/weatherforecast"))
 
@@ -29,7 +29,7 @@ let ``XUnit test`` () =
 
 
     let scenario =
-        Scenario.create "xunit hello world" [step1]
+        Scenario.create "Challenge 1" [step1]
         |> Scenario.withConcurrentCopies 50
         |> Scenario.withOutWarmUp
         |> Scenario.withDuration(TimeSpan.FromSeconds 4.0)

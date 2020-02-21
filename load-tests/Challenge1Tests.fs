@@ -1,4 +1,4 @@
-module Tests
+module Tests1
 
 open System
 open System.Threading.Tasks
@@ -14,9 +14,7 @@ open NBomber.Http.FSharp.Http
 
 [<Fact>]
 let ``Challenge 1`` () =
-
-    let step1 = HttpStep.create ("simple step", (fun (_sc: StepContext<unit> ) -> Http.createRequest "GET" "https://localhost:5001/weatherforecast"))
-
+    let step1 = HttpStep.create ("simple step", (fun (_sc: StepContext<unit> ) -> Http.createRequest "GET" "https://localhost:5001/weatherforecast_challenge1"))
     // v 0.16 (latest) has a weird, undocumented assert syntax
     // v 0.17 should fix this again
     // https://github.com/PragmaticFlow/NBomber/issues/184

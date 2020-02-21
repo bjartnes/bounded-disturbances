@@ -11,17 +11,17 @@ using Polly.Contrib.Simmy.Latency;
 namespace api_under_test.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    [Route("weatherforecast_challenge1")]
+    public class Challenge1Controller: ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ILogger<Challenge1Controller> _logger;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public Challenge1Controller(ILogger<Challenge1Controller> logger)
         {
             _logger = logger;
         }

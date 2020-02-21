@@ -11,18 +11,24 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
 
 This runs on dotnet core in VS Code and should work on Windows/Linux/Mac.
 
+# How to run
+
+# Prerequisites
 To run the workshop clone the repo, install dotnet core 3.1 or greater from https://dotnet.microsoft.com/download
+and VS Code from https://code.visualstudio.com/
 
-It should work to use CTRL+SHIFT+P and select Run Build Task - watch to start the API but it does not.
+# Starting the API
 
-Run "dotnet watch -p api-under-test/api-under-test.csproj run" in the console and make sure it starts listening on localhost:5001
+It should work to use CTRL+SHIFT+P and select "Run Build Task" and then select - "watch" to start the API.
+(If it does not work to run watch, then it is possible to run "dotnet watch -p api-under-test/api-under-test.csproj run" in the console and make sure it starts listening on localhost:5001)
 The API will reload once changed and should be exposed at https://localhost:5001/weatherforecast
 
-CTRL+SHIFT+P and Run Test Task - run loadtest should run the loadtest. They will take approximately 10 seconds to run. 
-
+# Run the tests
+CTRL+SHIFT+P and "Run Test Task" - "run tests defined in program.fs" should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Challenges
 
-I will add different challenges here... They work by commenting in/out the Skip annotations in the tests and following the explanations that will come...
+Comment in/out the challenges in load-tests/program.fs to run the individual challenges.
+Fill out the correct solution in the corresponding api-under-test/controllers/challengeXcontroller.cs in the GetPolicy method to make sure the test runs without errors.  
 
-![Workshop example](https://user-images.githubusercontent.com/1174441/74938562-88c2a180-53ee-11ea-959c-7c8383fdf315.png)
+![image](https://user-images.githubusercontent.com/1174441/75037092-aa399100-54b3-11ea-85b2-a1511bd42379.png)

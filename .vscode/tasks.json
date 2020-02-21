@@ -52,7 +52,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "run testproject",
+            "label": "run tests defined in program.fs",
             "command": "dotnet run -p load-tests/load-tests.fsproj",
             "type": "shell",
             "group": "test",

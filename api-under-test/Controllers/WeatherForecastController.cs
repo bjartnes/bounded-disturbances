@@ -39,7 +39,9 @@ namespace api_under_test.Controllers
             return await mix.ExecuteAsync(GetForecasts);
         }
 
-        // Should probably get them from yr 
+
+        // Should probably get them from yr , but will of course cause a lot of load
+        // from a workshop... Perhaps better to simulate
         private async Task<IEnumerable<WeatherForecast>> GetForecasts()
         {
             await Task.Delay(20);

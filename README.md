@@ -32,3 +32,11 @@ Comment in/out the challenges in load-tests/program.fs to run the individual cha
 Fill out the correct solution in the corresponding api-under-test/controllers/challengeXcontroller.cs in the GetPolicy method to make sure the test runs without errors.  
 
 ![image](https://user-images.githubusercontent.com/1174441/75037092-aa399100-54b3-11ea-85b2-a1511bd42379.png)
+
+## K6 tests
+
+Install docker if you have it not
+
+`docker pull loadimpact/k6`
+
+Ctrl-Shift-P -> Run k6test Windows|Linux

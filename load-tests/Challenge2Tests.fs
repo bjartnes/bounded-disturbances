@@ -18,7 +18,7 @@ let ``Challenge 2`` () =
 
     let assertions = [
        Assertion.forStep("simple step", (fun stats -> stats.OkCount > 2), "Should work a little bit");
-       Assertion.forStep("simple step", (fun stats -> stats.Percent95 <= 140), "95 percentile should not be much slower than the timeout")]
+       Assertion.forStep("simple step", (fun stats -> stats.Percent95 <= 170), "95 percentile should not be much slower than the timeout")]
 
     let scenario =
         Scenario.create "Challenge 2" [step1]

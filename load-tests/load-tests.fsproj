@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="Challenge0Tests.fs" />
     <Compile Include="Challenge1Tests.fs" />
+    <Compile Include="Challenge2Tests.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 

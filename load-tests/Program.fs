@@ -6,15 +6,23 @@ let main args =
     // Pure load-testing, no polly, no simmy, just a simple run to see how the workshop is structured and make sure things run
     // Start the API with running the build task called watch (it will start the API and reload it on changes)
     // Then run the test task called "run test tasks in program.fs (this file...)"
+    // Try to read and look at the stats... If you want to you can play with parameters such as the delay in the controller, length of test-run,
+    // concurrency etc and see how it affects the max RPS (requests pr second) 
     IntroTests.Intro()
 
-    // We always add errors and fixes at the same time. Or try to :)
-    // In these examples we typically have defined performance requirements
-    // and a defined chaos and 
+    // An idea behind this workshop is to do red-green resiliency testing
+    // We should ideally introduce a failing test, then repair it with resiliency
+    // Ideally we should be able to run our code like this in production - we wouldn't all the time probably, but we could
+    // In testing/staging/preproduction environments we surely could run with the Simmy errors all the time, as long as
+    // we mitigate the errors with Polly as we introduce them.
+
+    // In the upcoming challenges someone has written the failing load tests and introduced Simmy the chaos monkey
+    // It is up to you to write and tune Polly resiliency logic to mitigate the errors and pass the SLAs as defined by the NBomber tests 
+
+    Tests0.``Challenge 0``()
 
     // Some motivation and intro to framework
 
-    // Tests0.``Challenge 0``()
     // Tests1.``Challenge 1``()
     // Tests2.``Challenge 2``()
 

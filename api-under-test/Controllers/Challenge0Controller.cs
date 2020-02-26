@@ -40,12 +40,17 @@ namespace api_under_test.Controllers
         }
 
         private IAsyncPolicy GetPolicy() {
-            // FIll inn answer here
+            // Fill inn answer by changing code from here
             var policy = Policy.Handle<Exception>().RetryAsync(0);
+
+            // to here, anything outside of that is cheating.
+            // But cheating is encouraged as long as the rationale and code
+            // is shared with the workshop :)
+            // Also, if you cheat or add something fun, consider making a PR for a new 
+            // challenge to the workshop!
             return policy; 
         }
-        // Should probably get them from yr , but will of course cause a lot of load
-        // from a workshop.. Perhaps better to simulate
+
         private async Task<IEnumerable<WeatherForecast>> GetForecasts()
         {
             await Task.Delay(20);

@@ -19,16 +19,19 @@ let main args =
     // In the upcoming challenges someone has written the failing load tests and introduced Simmy the chaos monkey
     // It is up to you to write and tune Polly resiliency logic to mitigate the errors and pass the SLAs as defined by the NBomber tests 
 
-    Tests0.``Challenge 0``()
+    //Tests0.``Challenge 0``()
 
-    // Some motivation and intro to framework
+    // The next challenge introduces latency of 1 second to 10% of dependencies using Simmy.  
+    // Notice that the chaos must be wrapped as the last argument so that it runs inside the retries (try changing that...?)
+    // Change the policy in Challenge1Controller.cs
+    //Tests1.``Challenge 1``()
 
-    // Tests1.``Challenge 1``()
-    // Tests2.``Challenge 2``()
+
 
 
     // Some annoying real-world things we must think of regarding cancellations
     // Ideally they could be run first, but this is more of a nescessity than the core 
     // motivation for the workshop, so we add them later (but do NOT skip these)
 
+    //TestsX.``Challenge X``()
     0

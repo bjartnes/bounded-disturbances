@@ -31,22 +31,22 @@ namespace api_under_test.Controllers
         {
            var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
-                    .InjectionRate(0.1)
-                    .Enabled(true));
+                    .InjectionRate(0.1) // 10 % 
+                    .Enabled(true));    // Would probably only turn it on in some environments
             var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
             return await mix.ExecuteAsync(GetForecasts);
         }
 
         private IAsyncPolicy GetPolicy() {
-            // FIll inn answer here
-//            var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
-//            var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(300));
-//            var policy = Policy.WrapAsync(retryPolicy, timeoutPolicy);
+//          Fill inn answer by changing code from here
+//          var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
+//          var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(300));
+//          var policy = Policy.WrapAsync(retryPolicy, timeoutPolicy);
             var policy = Policy.Handle<Exception>().RetryAsync(0);
+//          until here
             return policy; 
         }
-        // Should probably get them from yr , but will of course cause a lot of load
-        // from a workshop... Perhaps better to simulate
+
         private async Task<IEnumerable<WeatherForecast>> GetForecasts()
         {
             await Task.Delay(20);

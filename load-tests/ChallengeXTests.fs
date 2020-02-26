@@ -1,4 +1,4 @@
-module Tests2
+module TestsX
 
 open System
 open System.Threading.Tasks
@@ -13,7 +13,7 @@ open NBomber.Http.FSharp
 open NBomber.Http.FSharp.Http
 
 [<Fact>]
-let ``Challenge 2`` () =
+let ``Challenge X`` () =
     let step1 = HttpStep.create ("simple step", (fun (_sc: StepContext<unit> ) ->  Http.createRequest "GET" "https://localhost:5001/weatherforecast_challenge2")) 
 
     let assertions = [

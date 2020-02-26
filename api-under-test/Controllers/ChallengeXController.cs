@@ -12,18 +12,18 @@ using Polly.Contrib.Simmy.Latency;
 namespace api_under_test.Controllers
 {
     [ApiController]
-    [Route("weatherforecast_challenge2")]
-    public class Challenge2Controller: ControllerBase
+    [Route("weatherforecast_challengex")]
+    public class ChallengeXController: ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<Challenge1Controller> _logger;
+        private readonly ILogger<ChallengeXController> _logger;
         private readonly Random _rng; 
 
-        public Challenge2Controller(ILogger<Challenge1Controller> logger)
+        public ChallengeXController(ILogger<ChallengeXController> logger)
         {
             _rng = new Random();
             _logger = logger;

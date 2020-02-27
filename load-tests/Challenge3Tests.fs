@@ -15,10 +15,6 @@ open NBomber.Http.FSharp.Http
 [<Fact>]
 let ``Challenge 3`` () =
     let step1 = HttpStep.create ("simple step", (fun (_sc: StepContext<unit> ) -> Http.createRequest "GET" "https://localhost:5001/weatherforecast_challenge3"))
-    // v 0.16 (latest) has a weird, undocumented assert syntax
-    // v 0.17 should fix this again
-    // https://github.com/PragmaticFlow/NBomber/issues/184
-    // https://github.com/PragmaticFlow/NBomber/blob/v0.16.0/examples/CSharp/CSharp.Examples.NUnit/Tests.cs
 
     let assertions = [
        Assertion.forStep("simple step", (fun stats -> stats.OkCount > 200), "Need 200 requests to have some data");

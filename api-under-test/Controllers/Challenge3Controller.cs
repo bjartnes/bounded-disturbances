@@ -33,15 +33,15 @@ namespace api_under_test.Controllers
            Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
            var latencyMonkey = MonkeyPolicy.InjectLatencyAsync(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
-                    .InjectionRate(0.1) // 10 % 
-                    .Enabled(true));    // Would probably only turn it on in some environments
+                    .InjectionRate(0.1) 
+                    .Enabled(true));
 
             var errorMonkey = MonkeyPolicy.InjectExceptionAsync(with => 
                 with.Fault(fault)
-                    .InjectionRate(0.1) // 10%
+                    .InjectionRate(0.1)
                     .Enabled(true));
  
-            var monkeyPolicy = Policy.WrapAsync(errorMonkey, latencyMonkey);
+            var monkeyPolicy = Policy.WrapAsync(latencyMonkey, errorMonkey);
 
             var mix = Policy.WrapAsync(GetPolicy(), monkeyPolicy);
             return await mix.ExecuteAsync(GetForecasts);
@@ -49,7 +49,7 @@ namespace api_under_test.Controllers
 
         private IAsyncPolicy GetPolicy() {
 //          Fill inn answer by changing code from here
-//          var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
+//          var retryPolicy = Policy.Handle<Exception>().RetryAsync(1);
 //          var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(300));
 //          var policy = Policy.WrapAsync(retryPolicy, timeoutPolicy);
             var policy = Policy.Handle<Exception>().RetryAsync(0);

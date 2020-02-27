@@ -23,6 +23,8 @@ It should work to use CTRL+SHIFT+P and select "Run Build Task" and then select -
 (If it does not work to run watch, then it is possible to run "dotnet watch -p api-under-test/api-under-test.csproj run" in the console and make sure it starts listening on localhost:5001)
 The API will reload once changed and should be exposed at https://localhost:5001/weatherforecast
 
+The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
+
 # Run the tests
 CTRL+SHIFT+P and "Run Test Task" - "run tests defined in program.fs" should run the loadtest. They will take approximately 10 seconds to run. 
 
@@ -35,8 +37,18 @@ Fill out the correct solution in the corresponding api-under-test/controllers/ch
 
 ## K6 tests
 
-Install docker if you have it not
+K6 is not really part of the workshop, but it is a load-testing tool that is often used and if you like to try you can run k6 tests locally with ease against the same endpoints. K6 runs inside a docker image, so most of the setup is related to making sure docker works. 
+
+K6 reports more details on the http session than NBomber.
+
+Install docker.
 
 `docker pull loadimpact/k6`
 
-Ctrl-Shift-P -> Run k6test Windows|Linux
+In VS Code
+Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
+
+Play with load-test config by modifying k6-tests/challenge0.test.js
+On my machine :tm: I can run more than 1000 req/s against the test-api.
+![K6](https://user-images.githubusercontent.com/1174441/75426378-d1c1ab00-5944-11ea-8cd7-77574fed3c01.png)
+

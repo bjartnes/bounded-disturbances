@@ -26,6 +26,8 @@ let main args =
     // Change the policy in Challenge1Controller.cs
     //Tests1.``Challenge 1``()
 
+    // Sometimes speed is all we care about
+    //Tests2.``Challenge 2``()
 
     // This scenario show how to test for both latency and exceptions.
     //Tests3.``Challenge 3``()

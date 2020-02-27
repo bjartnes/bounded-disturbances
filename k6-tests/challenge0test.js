@@ -3,9 +3,9 @@ import { check } from "k6";
 import { Trend } from "k6/metrics";
 
 export let options = {
-  vus       : 50,
+  vus       : 100,
   duration  : "10s",
-  rps       : 25, //max requests per second, increase to go faster
+//  rps       : 25, //max requests per second, increase to go faster
   insecureSkipTLSVerify : true //ignore that localhost cert doesn't match host.docker.internal
   
 }
@@ -28,7 +28,7 @@ let params = {
 
 export default function() {
     
-  let response = http.get("https://host.docker.internal:5001/weatherforecast_challenge0", params);
+  let response = http.get("https://host.docker.internal:5001/weatherforecast_intro", params);
 
   check( response, { "200 OK": res => res.status === 200 } );
 

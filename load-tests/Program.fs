@@ -8,7 +8,7 @@ let main args =
     // Then run the test task called "run test tasks in program.fs (this file...)"
     // Try to read and look at the stats... If you want to you can play with parameters such as the delay in the controller, length of test-run,
     // concurrency etc and see how it affects the max RPS (requests pr second) 
-    IntroTests.Intro()
+    //IntroTests.Intro()
 
     // An idea behind this workshop is to do red-green resiliency testing
     // We should ideally introduce a failing test, then repair it with resiliency
@@ -34,7 +34,8 @@ let main args =
 
     // Some annoying real-world things we must think of regarding cancellations
     // Ideally they could be run first, but this is more of a nescessity than the core 
-    // motivation for the workshop, so we add them later (but do NOT skip these)
+    // motivation for the workshop, so we add them here, sort of in the middle of the workshop.
+    // By now you should be motivated, but not so tired that you skip the hard parts.
 
-    //TestsX.``Challenge X``()
+    Tests4.``Challenge 4``()
     0

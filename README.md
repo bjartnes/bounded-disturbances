@@ -45,3 +45,6 @@ In VS Code
 Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
 
 Play with load-test config by modifying k6-tests/challenge0.test.js
+
+![K6](https://user-images.githubusercontent.com/1174441/75426378-d1c1ab00-5944-11ea-8cd7-77574fed3c01.png)
+

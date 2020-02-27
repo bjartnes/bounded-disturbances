@@ -23,6 +23,8 @@ It should work to use CTRL+SHIFT+P and select "Run Build Task" and then select -
 (If it does not work to run watch, then it is possible to run "dotnet watch -p api-under-test/api-under-test.csproj run" in the console and make sure it starts listening on localhost:5001)
 The API will reload once changed and should be exposed at https://localhost:5001/weatherforecast
 
+The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
+
 # Run the tests
 CTRL+SHIFT+P and "Run Test Task" - "run tests defined in program.fs" should run the loadtest. They will take approximately 10 seconds to run. 
 

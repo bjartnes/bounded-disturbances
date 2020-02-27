@@ -39,6 +39,8 @@ Fill out the correct solution in the corresponding api-under-test/controllers/ch
 
 K6 is not really part of the workshop, but it is a load-testing tool that is often used and if you like to try you can run k6 tests locally with ease against the same endpoints. K6 runs inside a docker image, so most of the setup is related to making sure docker works. 
 
+K6 reports more details on the http session than NBomber.
+
 Install docker.
 
 `docker pull loadimpact/k6`

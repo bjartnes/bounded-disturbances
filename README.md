@@ -35,8 +35,13 @@ Fill out the correct solution in the corresponding api-under-test/controllers/ch
 
 ## K6 tests
 
-Install docker if you have it not
+K6 is not really part of the workshop, but it is a load-testing tool that is often used and if you like to try you can run k6 tests locally with ease against the same endpoints. K6 runs inside a docker image, so most of the setup is related to making sure docker works. 
+
+Install docker.
 
 `docker pull loadimpact/k6`
 
-Ctrl-Shift-P -> Run k6test Windows|Linux
+In VS Code
+Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
+
+Play with load-test config by modifying k6-tests/challenge0.test.js

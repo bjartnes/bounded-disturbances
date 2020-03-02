@@ -25,6 +25,11 @@ The API will reload once changed and should be exposed at https://localhost:5001
 
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
 
+If you struggle with ssl trust run:
+`dotnet dev-certs https --trust`
+
+If you are on Ubuntu (maybe also other linux distros), I suggest you rewrite your test to use http at localhost:5000 instead (search and replace, probably) unless you know how to fix it. Or pairprogram with someone.
+
 # Run the tests
 CTRL+SHIFT+P and "Run Test Task" - "run tests defined in program.fs" should run the loadtest. They will take approximately 10 seconds to run. 
 

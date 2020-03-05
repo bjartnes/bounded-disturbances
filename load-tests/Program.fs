@@ -38,4 +38,13 @@ let main args =
     // By now you should be motivated, but not so tired that you skip the hard parts.
 
     Tests4.``Challenge 4``()
+
+
+
+
+    // Challenge 10 requires Docker and is running k6 to close ports
+    // It is a bit hairy, but you should see
+    //  the api throwing socketexceptions and if you run >netstat -a -n from a cmd.exe on windows in admin mode you should se a lot of time-wait sockets that are open.
+    // I havent yet been able to make a very sweet demo fo this with red green tests, but I guess I will... Somehow.
+
     0

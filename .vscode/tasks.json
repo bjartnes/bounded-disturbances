@@ -62,8 +62,17 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "run k6test Windows",
+            "label": "run k6test 0 Windows",
             "command": "cmd /c --% docker run -i --rm loadimpact/k6 run - <k6-tests\\challenge0test.js",
+            "type": "shell",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "run k6test 10 Windows",
+            "command": "cmd /c --% docker run -i --rm loadimpact/k6 run - <k6-tests\\challenge10test.js",
             "type": "shell",
             "group": "test",
             "presentation": {
@@ -73,6 +82,15 @@
         {
             "label": "run k6test Linux",
             "command": "docker run -i --rm loadimpact/k6 run - <k6-tests/challenge0test.js",
+            "type": "shell",
+            "group": "test",
+            "presentation": {
+                "reveal": "silent"
+            }
+        },
+        {
+            "label": "run k6test 10 Linux",
+            "command": "docker run -i --rm loadimpact/k6 run - <k6-tests/challenge10test.js",
             "type": "shell",
             "group": "test",
             "presentation": {

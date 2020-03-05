@@ -42,15 +42,7 @@ namespace api_under_test.Controllers
         }
 
         private IAsyncPolicy GetPolicy() {
-           var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
-                with.Latency(TimeSpan.FromSeconds(10))
-                    .InjectionRate(0.1)
-                    .Enabled(true)); 
-        
-            var retryPolicy = Policy.Handle<Exception>().RetryAsync(1);
- 
-            var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(2000));
-            return Policy.WrapAsync(retryPolicy, timeoutPolicy, chaosPolicy); 
+            return Policy.TimeoutAsync(TimeSpan.FromMilliseconds(2000));
         }
 
         private async Task<string> GetForecasts(CancellationToken ct)

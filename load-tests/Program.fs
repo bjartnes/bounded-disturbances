@@ -8,7 +8,7 @@ let main args =
     // Then run the test task called "run test tasks in program.fs (this file...)"
     // Try to read and look at the stats... If you want to you can play with parameters such as the delay in the controller, length of test-run,
     // concurrency etc and see how it affects the max RPS (requests pr second) 
-    //IntroTests.Intro()
+    IntroTests.Intro()
 
     // An idea behind this workshop is to do red-green resiliency testing
     // We should ideally introduce a failing test, then repair it with resiliency
@@ -37,7 +37,13 @@ let main args =
     // motivation for the workshop, so we add them here, sort of in the middle of the workshop.
     // By now you should be motivated, but not so tired that you skip the hard parts.
 
-    Tests4.``Challenge 4``()
+    //Tests4.``Challenge 4``()
+
+    //Tests5.``Challenge 5``()
+
+    // This needs more refactoring..
+    // If you look carefully this will struggle - it is not idempotent... And injected exceptions will not trigger the underlying method
+    //Tests6.``Challenge 6``()
 
 
 
@@ -46,5 +52,6 @@ let main args =
     // It is a bit hairy, but you should see
     //  the api throwing socketexceptions and if you run >netstat -a -n from a cmd.exe on windows in admin mode you should se a lot of time-wait sockets that are open.
     // I havent yet been able to make a very sweet demo fo this with red green tests, but I guess I will... Somehow.
-
+    // run the test task called k6 test 10 ...
+    // You need to pay attention to the api output, it should start spitting out errors. netstat -a -n should show a lot of stuff
     0

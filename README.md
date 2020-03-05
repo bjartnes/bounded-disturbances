@@ -25,6 +25,11 @@ The API will reload once changed and should be exposed at https://localhost:5001
 
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
 
+If you struggle with ssl trust run:
+`dotnet dev-certs https --trust`
+
+If you are on Ubuntu (maybe also other linux distros), I suggest you rewrite your test to use http at localhost:5000 instead (search and replace, probably) unless you know how to fix it. Or pairprogram with someone.
+
 # Run the tests
 CTRL+SHIFT+P and "Run Test Task" - "run tests defined in program.fs" should run the loadtest. They will take approximately 10 seconds to run. 
 
@@ -37,7 +42,7 @@ Fill out the correct solution in the corresponding api-under-test/controllers/ch
 
 ## K6 tests
 
-K6 is not really part of the workshop, but it is a load-testing tool that is often used and if you like to try you can run k6 tests locally with ease against the same endpoints. K6 runs inside a docker image, so most of the setup is related to making sure docker works. 
+K6 is not required for all parts of the workshop, but it is a load-testing tool that is often used and if you like to try you can run k6 tests locally with ease against the same endpoints. There are also some things that are easier to test and understand using k6. K6 runs inside a docker image, so most of the setup is related to making sure docker works. 
 
 K6 reports more details on the http session than NBomber.
 

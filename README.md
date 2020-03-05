@@ -57,3 +57,10 @@ Play with load-test config by modifying k6-tests/challenge0.test.js
 On my machine :tm: I can run more than 1000 req/s against the test-api.
 ![K6](https://user-images.githubusercontent.com/1174441/75426378-d1c1ab00-5944-11ea-8cd7-77574fed3c01.png)
 
+
+## Comments
+
+There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 
+https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
+https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly
+https://github.com/Polly-Contrib/Polly.Contrib.SimmyDemo_WebApi/blob/master/SimmyDemo_WebApi/Startup.cs#L70

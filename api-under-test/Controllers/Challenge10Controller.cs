@@ -6,9 +6,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Polly;
 using System.Threading;
+using System.IO;
 using System.Net.Http;
 using Polly.Contrib.Simmy;
 using Polly.Contrib.Simmy.Latency;
+using System.Text;
 
 namespace api_under_test.Controllers
 {
@@ -31,28 +33,38 @@ namespace api_under_test.Controllers
         }
 
         [HttpGet]
-        // We should be able to save our API from running out of sockets by simply changing the Get() method - both the signature and the CancellationToken.None part
-        // You can have a CancellationToken by just adding it to the controller method - frameworks aren't always evil
 //        public async Task<string> Get(CancellationToken ct)
-        public async Task<string> Get()
+        public async Task<string> Get(CancellationToken ct)
         {
             var policy = GetPolicy();
             // We can also use someone elses token, the rest should be quite similar to challenge 4
-            return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None); 
+            //return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None); 
+            try {
+                return await policy.ExecuteAsync((ct) => GetForecasts(ct), ct); 
+            } catch (OperationCanceledException _) {
+                return "canceled"; 
+            }
         }
 
         private IAsyncPolicy GetPolicy() {
-            return Policy.TimeoutAsync(TimeSpan.FromMilliseconds(2000));
+            return Policy.TimeoutAsync(TimeSpan.FromMilliseconds(5000));
         }
 
+        private async Task<int> Recursive(int counter, CancellationToken ct) {
+            await Task.Delay(1);
+            if (counter == 100) {
+
+                throw new Exception("BOOM");
+            }
+             if (ct.IsCancellationRequested) {
+                return counter;
+            }
+            return await Recursive(counter+ 1, ct);
+        }
         private async Task<string> GetForecasts(CancellationToken ct)
         {
-            var url = new Uri(@"https://localhost:5001/weatherforecast_challenge0");
-            using (var client = new HttpClient()) {
-                var resp = client.GetAsync(url, ct);
-                await Task.Delay(1000, ct);
-                return await (await resp).Content.ReadAsStringAsync();; 
-            }
+            return (await Recursive(1, ct)).ToString();
         }
+
     }
 }

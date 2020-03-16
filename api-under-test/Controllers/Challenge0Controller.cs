@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Contrib.Simmy;
 using Polly.Contrib.Simmy.Outcomes;
+using System.Threading;
 
 namespace api_under_test.Controllers
 {
@@ -36,7 +37,7 @@ namespace api_under_test.Controllers
                    .InjectionRate(0.1)
                    .Enabled(true));
             var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
-            return await mix.ExecuteAsync(GetForecasts);
+            return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
         }
 
         private IAsyncPolicy GetPolicy() {
@@ -51,9 +52,9 @@ namespace api_under_test.Controllers
             return policy; 
         }
 
-        private async Task<IEnumerable<WeatherForecast>> GetForecasts()
+        private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)
         {
-            await Task.Delay(20);
+            await Task.Delay(20, ct);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

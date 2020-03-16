@@ -40,7 +40,7 @@ namespace api_under_test.Controllers
             // if you want to provide a new cancellation token that executeasync can use to terminate a task
             // The thing is, tasks must collaborate on cancellation
             // and they do that by sending cancellationtokens... They must come from somewhere 
-            return await policy.ExecuteAsync(() => GetForecasts()); 
+            return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
         }
 
         private IAsyncPolicy GetPolicy() {
@@ -49,23 +49,23 @@ namespace api_under_test.Controllers
         }
 
         // This signature needs to change to accept a token 
-        private async Task<IEnumerable<WeatherForecast>> GetForecasts()
+        private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)
         {
             // And this too must propagate tokens 
-            var tasks = Enumerable.Range(1, 3).Select(index => GetForecast(index)).ToArray();
+            var tasks = Enumerable.Range(1, 3).Select(index => GetForecast(index, ct)).ToArray();
             await Task.WhenAll(tasks);
             return tasks.Select(t => t.Result).ToArray();
         }
 
         // There might be some changes required to this signature as well
-        private async Task<WeatherForecast> GetForecast(int index){
+        private async Task<WeatherForecast> GetForecast(int index, CancellationToken ct){
             
             // The delays need to cooperate with the cancellation by being handled a token 
 
             if (_rng.NextDouble() > 0.95) {
-               await Task.Delay(2000);
+               await Task.Delay(2000, ct);
             } else {
-                await Task.Delay(10);
+                await Task.Delay(10, ct);
             }
 
             return new WeatherForecast

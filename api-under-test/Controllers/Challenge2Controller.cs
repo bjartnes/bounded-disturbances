@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Contrib.Simmy;
 using Polly.Contrib.Simmy.Latency;
+using System.Threading;
 
 namespace api_under_test.Controllers
 {
@@ -33,7 +34,7 @@ namespace api_under_test.Controllers
                     .InjectionRate(0.05) // 10 % 
                     .Enabled(true));    // Would probably only turn it on in some environments
             var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
-            return await mix.ExecuteAsync(GetForecasts);
+            return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
         }
 
         private IAsyncPolicy GetPolicy() {
@@ -46,9 +47,9 @@ namespace api_under_test.Controllers
             return policy; 
         }
 
-        private async Task<IEnumerable<WeatherForecast>> GetForecasts()
+        private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)
         {
-            await Task.Delay(1);
+            await Task.Delay(1, ct);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

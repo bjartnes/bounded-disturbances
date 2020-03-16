@@ -53,8 +53,7 @@ namespace api_under_test.Controllers
         private async Task<int> Recursive(int counter, CancellationToken ct) {
             await Task.Delay(1);
             if (counter == 100) {
-
-                throw new Exception("BOOM");
+                System.Environment.Exit(1); //BOOM
             }
              if (ct.IsCancellationRequested) {
                 return counter;

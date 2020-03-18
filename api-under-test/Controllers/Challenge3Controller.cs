@@ -8,6 +8,7 @@ using Polly;
 using Polly.Contrib.Simmy;
 using Polly.Contrib.Simmy.Latency;
 using Polly.Contrib.Simmy.Outcomes;
+using Polly.Contrib.Simmy.Behavior;
 using System.Threading;
 
 namespace api_under_test.Controllers
@@ -31,29 +32,35 @@ namespace api_under_test.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
+            var mix = Policy.WrapAsync<IEnumerable<WeatherForecast>>(GetPolicy(), GetMonkeyPolicy());
+            return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
+        }
+
+        private IAsyncPolicy<IEnumerable<WeatherForecast>> GetMonkeyPolicy() {
            Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
-           var latencyMonkey = MonkeyPolicy.InjectLatencyAsync(with =>
+
+           var latencyMonkey = MonkeyPolicy.InjectLatencyAsync<IEnumerable<WeatherForecast>>(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
                     .InjectionRate(0.1) 
                     .Enabled(true));
 
-            var errorMonkey = MonkeyPolicy.InjectExceptionAsync(with => 
-                with.Fault(fault)
+           var latencyMonkey2 = MonkeyPolicy.InjectLatencyAsync<IEnumerable<WeatherForecast>>(with =>
+                with.Latency(TimeSpan.FromSeconds(1))
+                    .InjectionRate(0.1) 
+                    .Enabled(true));
+
+            var errorMonkey = MonkeyPolicy.InjectBehaviourAsync<IEnumerable<WeatherForecast>>(with => 
+                with.Behaviour(() => throw fault) 
                     .InjectionRate(0.1)
                     .Enabled(true));
  
-            var monkeyPolicy = Policy.WrapAsync(latencyMonkey, errorMonkey);
-
-            var mix = Policy.WrapAsync(GetPolicy(), monkeyPolicy);
-            return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
-        }
-
-        private IAsyncPolicy GetPolicy() {
+            return Policy.WrapAsync<IEnumerable<WeatherForecast>>(latencyMonkey, errorMonkey);
+        } 
+        private IAsyncPolicy<IEnumerable<WeatherForecast>> GetPolicy() {
 //          Fill inn answer by changing code from here
-//          var retryPolicy = Policy.Handle<Exception>().RetryAsync(1);
-//          var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(300));
-//          var policy = Policy.WrapAsync(retryPolicy, timeoutPolicy);
-            var policy = Policy.Handle<Exception>().RetryAsync(0);
+            var retryPolicy = Policy<IEnumerable<WeatherForecast>>.Handle<Exception>().RetryAsync(3);
+            var timeoutPolicy = Policy.TimeoutAsync<IEnumerable<WeatherForecast>>(TimeSpan.FromMilliseconds(50));
+            var policy = Policy.WrapAsync<IEnumerable<WeatherForecast>>(retryPolicy, timeoutPolicy);
 //          until here
             return policy; 
         }

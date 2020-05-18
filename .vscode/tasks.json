@@ -14,19 +14,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "publish",
-            "command": "dotnet",
-            "type": "process",
-            "args": [
-                "publish",
-                "${workspaceFolder}/api-under-test/api-under-test.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
-            ],
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "watch",
+            "label": "run and watch web api",
             "command": "dotnet watch -p api-under-test/api-under-test.csproj run",
             "type": "shell",
             "group": "build",
@@ -42,61 +30,37 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "run loadtests",
-            "command": "dotnet test load-tests/load-tests.fsproj",
+            "label": "run k6test Windows",
+            "command": "cmd /c --% docker run -i --rm loadimpact/k6 run --out influxdb=http://host.docker.internal:8086/reportdb - <k6-tests\\challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": "$msCompile"
         },
         {
-            "label": "run tests defined in program.fs",
-            "command": "dotnet run -p load-tests/load-tests.fsproj",
+            "label": "run k6test Linux? will it work? localhost?",
+            "command": "docker run -i --rm loadimpact/k6 run --out influxdb=http://host.docker.internal:8086/reportdb - <k6-tests/challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
-            "presentation": {
-                "reveal": "silent"
-            },
-            "problemMatcher": "$msCompile"
-        },
-        {
-            "label": "run k6test 0 Windows",
-            "command": "cmd /c --% docker run -i --rm loadimpact/k6 run - <k6-tests\\challenge0test.js",
-            "type": "shell",
-            "group": "test",
-            "presentation": {
-                "reveal": "silent"
-            }
-        },
-        {
-            "label": "run k6test 10 Windows",
-            "command": "cmd /c --% docker run -i --rm loadimpact/k6 run - <k6-tests\\challenge10test.js",
-            "type": "shell",
-            "group": "test",
-            "presentation": {
-                "reveal": "silent"
-            }
-        },
-        {
-            "label": "run k6test Linux",
-            "command": "docker run -i --rm loadimpact/k6 run - <k6-tests/challenge0test.js",
-            "type": "shell",
-            "group": "test",
-            "presentation": {
-                "reveal": "silent"
-            }
-        },
-        {
-            "label": "run k6test 10 Linux",
-            "command": "docker run -i --rm loadimpact/k6 run - <k6-tests/challenge10test.js",
-            "type": "shell",
-            "group": "test",
-            "presentation": {
-                "reveal": "silent"
-            }
         }
 
+    ],
+      "inputs": [
+        {
+        "type": "pickString",
+        "id": "testToRun",
+        "description": "Which test do you want to run?",
+        "options": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+        ],
+        "default": "0"
+        }
     ]
 }

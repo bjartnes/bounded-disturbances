@@ -14,7 +14,7 @@ import { Counter } from "k6/metrics";
 
 export let options = {
   vus       : 50,
-  duration  : "6s",
+  duration  : "10s",
 //  rps       : 25, //max requests per second, increase to go faster
   insecureSkipTLSVerify : true, //ignore that localhost cert doesn't match host.docker.internal
   thresholds: {

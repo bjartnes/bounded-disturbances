@@ -37,8 +37,10 @@ namespace api_under_test.Controllers
         public async Task<string> Get()
         {
             var policy = GetPolicy();
+            // these lines might need to be moved around
             var url = new Uri(@"https://localhost:5001/weatherforecast_challenge0");
             var msg = new HttpRequestMessage(HttpMethod.Get, url); 
+            // to somewhere... and the GetForecasts signature got to loose its message
             return await policy.ExecuteAsync(() => GetForecasts(msg)); 
         }
 
@@ -47,14 +49,13 @@ namespace api_under_test.Controllers
         }
 
         private async Task<string> GetForecasts(HttpRequestMessage msg)
-       {
-
+        {
                var resp = await _client.SendAsync(msg);
                if (_rng.NextDouble() > 0.95) {
                     throw new Exception( "oops");
                }
 
                return await resp.Content.ReadAsStringAsync(); 
-       } 
+        } 
     } 
 } 

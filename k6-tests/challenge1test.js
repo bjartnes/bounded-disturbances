@@ -1,3 +1,7 @@
+    // The next challenge introduces latency of 1 second to 10% of dependencies using Simmy.  
+    // Notice that the chaos must be wrapped as the last argument so that it runs inside the retries (try changing that...?)
+    // Change the policy in Challenge1Controller.cs
+ 
 import http from "k6/http";
 import { Rate } from "k6/metrics";
 import { Counter } from "k6/metrics";

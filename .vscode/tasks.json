@@ -49,6 +49,7 @@
         "id": "testToRun",
         "description": "Which test do you want to run?",
         "options": [
+            "intro",
             "0",
             "1",
             "2",
@@ -60,7 +61,7 @@
             "8",
             "9"
         ],
-        "default": "0"
+        "default": "intro"
         }
     ]
 }

@@ -3,13 +3,21 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
-    restart: always
+    restart: always 
     ports:
       - 3000:3000
     networks:
       - monitoring
     volumes:
       - grafana-volume:/var/lib/grafana
+  telegraf:
+    image: telegraf 
+    container_name: telegraf 
+    restart: always 
+    networks:
+      - monitoring
+    volumes:
+      - ./telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro
   influxdb:
     image: influxdb
     container_name: influxdb

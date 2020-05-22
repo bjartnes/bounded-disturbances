@@ -38,11 +38,14 @@ namespace api_under_test.Controllers
         }
 
         private IAsyncPolicy GetPolicy() {
+            var retries = 4;
+            Program.Retries.Set(retries);
+            Program.Retries.Publish();
 //          Fill inn answer by changing code from here
 //          var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
 //          var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(400));
 //          var policy = Policy.WrapAsync(retryPolicy, timeoutPolicy);
-           var policy = Policy.Handle<Exception>().RetryAsync(0);
+           var policy = Policy.Handle<Exception>().RetryAsync(retries);
 //          until here
             return policy; 
         }

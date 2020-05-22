@@ -42,7 +42,10 @@ namespace api_under_test.Controllers
 
         private IAsyncPolicy GetPolicy() {
             // Fill inn answer by changing code from here
-            var policy = Policy.Handle<Exception>().RetryAsync(0);
+            var retries = 4;
+            Program.Retries.Set(retries);
+            Program.Retries.Publish();
+            var policy = Policy.Handle<Exception>().RetryAsync(retries);
 
             // to here, anything outside of that is cheating.
             // But cheating is encouraged as long as the rationale and code

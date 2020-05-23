@@ -8,7 +8,7 @@
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
-            "preLaunchTask": "build",
+            "preLaunchTask": "run and watch web api",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/api-under-test/bin/Debug/netcoreapp3.1/api-under-test.dll",
             "args": [],

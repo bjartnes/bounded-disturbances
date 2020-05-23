@@ -15,6 +15,8 @@ Kjør `docker-compose up` (Du kan evt også legge på `-d` for å kjøre kontain
 ## Lag database for test repportering
 Kjør `pswh create-report-db.ps1`
 
+ms-vscode-remote.remote-containers
+
 ## Grafana
 Åpne http://localhost:3000
 Både brukernavn og passord er `admin`

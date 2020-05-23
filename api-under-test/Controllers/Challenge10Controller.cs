@@ -34,13 +34,13 @@ namespace api_under_test.Controllers
 
         [HttpGet]
 //        public async Task<string> Get(CancellationToken ct)
-        public async Task<string> Get(CancellationToken ct)
+        public async Task<string> Get()
         {
             var policy = GetPolicy();
             // We can also use someone elses token, the rest should be quite similar to challenge 4
             //return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None); 
             try {
-                return await policy.ExecuteAsync((ct) => GetForecasts(ct), ct); 
+                return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None); 
             } catch (OperationCanceledException _) {
                 return "canceled"; 
             }

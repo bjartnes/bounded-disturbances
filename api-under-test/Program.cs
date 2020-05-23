@@ -32,6 +32,7 @@ namespace api_under_test
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://*:5000", "https://*:5001");
                 });
     }
 }

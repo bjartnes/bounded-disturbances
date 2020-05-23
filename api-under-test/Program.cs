@@ -20,7 +20,7 @@ namespace api_under_test
         {
             var collector = DotNetRuntimeStatsBuilder.Default().StartCollecting();
             //var server = new MetricServer(hostname: "*", port: 1234);
-            var server = new MetricServer(hostname: "localhost", port: 1234);
+            var server = new MetricServer(hostname: "*", port: 1234);
             
             server.Start();
 

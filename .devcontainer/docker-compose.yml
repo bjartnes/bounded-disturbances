@@ -1,5 +1,17 @@
 version: "2"
 services:
+  webapi:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - monitoring
+    ports: 
+      - 5000:5000
+      - 5001:5001
+      - 1234:1234
+    command: /bin/sh -c "while sleep 1000; do :; done"  
   grafana:
     image: grafana/grafana
     container_name: grafana
@@ -17,7 +29,7 @@ services:
     networks:
       - monitoring
     volumes:
-      - ./telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - ./../telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro
   influxdb:
     image: influxdb
     container_name: influxdb
@@ -35,7 +47,6 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=admin
       - INFLUXDB_USER=user
       - INFLUXDB_USER_PASSWORD=user
-
 networks:
   monitoring:
 volumes:

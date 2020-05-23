@@ -10,8 +10,8 @@ import { Trend } from "k6/metrics";
 
 export let options = {
   vus       : 100,
-  duration  : "60s",
-//  rps       : 25, //max requests per second, increase to go faster
+  duration  : "15s",
+  rps       : 25, //max requests per second, increase to go faster
   insecureSkipTLSVerify : true //ignore that localhost cert doesn't match host.docker.internal
   
 }

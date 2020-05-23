@@ -12,6 +12,8 @@ services:
       - 5001:5001
       - 1234:1234
     command: /bin/sh -c "while sleep 1000; do :; done"  
+    volumes:
+      - ../:/workspace:cached
   grafana:
     image: grafana/grafana
     container_name: grafana

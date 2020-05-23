@@ -29,7 +29,7 @@ let params = {
 
 export default function() {
     
-  let response = http.get("https://host.docker.internal:5001/weatherforecast_challenge10", params);
+  let response = http.get("https://localhost:5001/weatherforecast_challenge10", params);
   check( response, { "200 OK": res => res.status === 200 } );
 
   TrendRTT.add(response.timings.duration);

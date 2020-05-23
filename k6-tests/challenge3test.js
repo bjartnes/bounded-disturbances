@@ -19,7 +19,7 @@ const myOkRate = new Rate("200 OK rate");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {
-  let response = http.get("https://host.docker.internal:5001/weatherforecast_challenge3");
+  let response = http.get("https://localhost:5001/weatherforecast_challenge3");
   let resOk = response.status === 200;
   myOkRate.add(resOk);
   myOkCounter.add(resOk);

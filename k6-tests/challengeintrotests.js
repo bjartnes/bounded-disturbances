@@ -34,7 +34,7 @@ let params = {
 
 export default function() {
     
-  let response = http.get("https://host.docker.internal:5001/weatherforecast_intro", params);
+  let response = http.get("https://localhost:5001/weatherforecast_intro", params);
 
   check( response, { "200 OK": res => res.status === 200 } );
 

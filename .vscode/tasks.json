@@ -30,14 +30,8 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "run k6test Windows",
-            "command": "cmd /c --% docker run -i --rm loadimpact/k6 run --out influxdb=http://host.docker.internal:8086/reportdb - <k6-tests\\challenge${input:testToRun}test.js",
-            "type": "shell",
-            "group": "test",
-        },
-        {
-            "label": "run k6test Linux? will it work? localhost?",
-            "command": "k6 run --out influxdb=http://host.docker.internal:8086/reportdb - <k6-tests/challenge${input:testToRun}test.js",
+            "label": "run k6test",
+            "command": "k6 run --out influxdb=http://influxdb:8086/reportdb - <k6-tests/challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
         }

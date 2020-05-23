@@ -37,7 +37,7 @@
         },
         {
             "label": "run k6test Linux? will it work? localhost?",
-            "command": "docker run -i --rm loadimpact/k6 run --out influxdb=http://host.docker.internal:8086/reportdb - <k6-tests/challenge${input:testToRun}test.js",
+            "command": "k6 run --out influxdb=http://host.docker.internal:8086/reportdb - <k6-tests/challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
         }

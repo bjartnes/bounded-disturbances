@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.NetworkInformation;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -15,6 +17,9 @@ namespace api_under_test
     {
 
         public static Gauge Retries = Metrics.CreateGauge("polly_retries", "How many");
+        public static Gauge TcpConnections = Metrics.CreateGauge("tcpconnections", "How many");
+
+        private static Timer _timer;
 
         public static void Main(string[] args)
         {
@@ -23,7 +28,8 @@ namespace api_under_test
             var server = new MetricServer(hostname: "*", port: 1234);
             
             server.Start();
-
+            
+            _timer = new Timer(LogNetworkInfo, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -34,5 +40,11 @@ namespace api_under_test
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls("http://*:5000", "https://*:5001");
                 });
+        private static void LogNetworkInfo(object state)
+        {
+            var tcpStat = IPGlobalProperties.GetIPGlobalProperties().GetTcpIPv4Statistics();
+            TcpConnections.Set(tcpStat.CurrentConnections);
+        }
+
     }
 }

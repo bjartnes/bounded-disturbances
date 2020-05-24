@@ -22,7 +22,6 @@ services:
       - 3000:3000
     networks:
       - monitoring
-    volumes:
   telegraf:
     image: telegraf 
     container_name: telegraf 

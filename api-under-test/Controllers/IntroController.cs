@@ -38,9 +38,9 @@ namespace api_under_test.Controllers
                 Date = DateTime.Now.AddDays(index),
                 TemperatureC = rng.Next(-20, 55),
 
-                //Summary = Summaries[rng.Next(Summaries.Length)]
+                Summary = Summaries[rng.Next(Summaries.Length)]
                 //Summary = System.IO.File.ReadAllText("../README.MD")
-                Summary = System.IO.File.ReadAllText("../telegraf-volume/telegraf.conf")
+                //Summary = System.IO.File.ReadAllText("../telegraf-volume/telegraf.conf")
             })
             .ToArray();
         }

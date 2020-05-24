@@ -17,14 +17,33 @@ described here https://code.visualstudio.com/docs/remote/containers.
 # Prerequisites
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
-Install docker.
+Install docker. 
+
+## On Windows
+Share the repo in Docker
+![Turn on filesharing](https://user-images.githubusercontent.com/1174441/82738627-4c7a4680-9d39-11ea-9b6a-ab42b9accec3.png)
+
+If you want to have Docker metrics in Grafana turn on this
+![You do not have to, but for Docker metrics](https://user-images.githubusercontent.com/1174441/82738633-5c922600-9d39-11ea-83bb-ea0bf358645a.png)
 
 Run the scripts in /k6-local-logging/ (setup-volumes.ps1), docker-compose up and create-report-db.ps1. I will write some more details on this, probably wrap it in one script and also make something for Linux Mac on this (it is almost the same commands...)
+
+
+# Setting up dashboards and datasources
+
+Run the task (Ctrl+Shift+P) to create the database.
+![Create the database in Influx](https://user-images.githubusercontent.com/1174441/82750736-660ba480-9db2-11ea-9358-baa1e80d9c63.png)
+
+![Add influx DB datasource](https://user-images.githubusercontent.com/1174441/82738661-9531ff80-9d39-11ea-83a1-690f7c78be6c.png)
 
 # Starting the API
 
 It should work to use CTRL+SHIFT+P and select "Run Build Task" and then select - "watch" to start the API.
 Also, the button - I will make screenshots - should work.
+
+Or you can use the button
+![To start the API with the play button](https://user-images.githubusercontent.com/1174441/82750720-4c6a5d00-9db2-11ea-8149-90c020fa2148.png)
+
 The API will reload once changed and should be exposed at http://localhost:5000/weatherforecast_intro
 
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.

@@ -29,6 +29,10 @@ If it does not open it automatically
 Share the repo in Docker
 ![Turn on filesharing](https://user-images.githubusercontent.com/1174441/82738627-4c7a4680-9d39-11ea-9b6a-ab42b9accec3.png)
 
+I have seen the following error if I do not share entire C: drive
+```
+(/usr/share/dotnet/sdk/3.1.300/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(234,5): error MSB4018: NuGet.Packaging.Core.PackagingException: Unable to find fallback package folder 'C:\Program Files\dotnet\sdk\NuGetFallbackFolder'. [/workspace/api-under-test/api-under-test.csproj])
+```
 If you want to have Docker metrics in Grafana turn on this
 ![You do not have to, but for Docker metrics](https://user-images.githubusercontent.com/1174441/82738633-5c922600-9d39-11ea-83bb-ea0bf358645a.png)
 

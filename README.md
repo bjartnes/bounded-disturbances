@@ -19,6 +19,10 @@ To run the workshop clone the repo, install VS Code from https://code.visualstud
 
 Install docker. 
 
+You will get a lot of these ![](https://user-images.githubusercontent.com/1174441/82751431-85590080-9db7-11ea-8a6a-7728a0a1c877.png) 
+to install extensions, and then asked to relead the folder in the Docker images and just go yes, yes, sure, reload etc. And
+wait when it asks you too, downloading and building all the images can take a while the first time.
+
 ## On Windows
 Share the repo in Docker
 ![Turn on filesharing](https://user-images.githubusercontent.com/1174441/82738627-4c7a4680-9d39-11ea-9b6a-ab42b9accec3.png)

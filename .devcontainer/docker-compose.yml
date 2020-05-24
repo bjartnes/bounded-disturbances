@@ -23,7 +23,6 @@ services:
     networks:
       - monitoring
     volumes:
-      - grafana-volume:/var/lib/grafana
   telegraf:
     image: telegraf 
     container_name: telegraf 
@@ -40,8 +39,6 @@ services:
       - 8086:8086
     networks:
       - monitoring
-    volumes:
-      - influxdb-volume:/var/lib/influxdb
     environment:
       - INFLUXDB_DB=telegraf
       - INFLUXDB_ADMIN_ENABLED=true
@@ -51,8 +48,3 @@ services:
       - INFLUXDB_USER_PASSWORD=user
 networks:
   monitoring:
-volumes:
-  grafana-volume:
-    external: true
-  influxdb-volume:
-    external: true

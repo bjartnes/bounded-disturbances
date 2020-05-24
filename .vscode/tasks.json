@@ -34,8 +34,13 @@
             "command": "k6 run --out influxdb=http://influxdb:8086/reportdb k6-tests/challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
+        },
+        {
+            "label": "create database",
+            "command": "curl -X POST -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE reportdb'",
+            "type": "shell",
+            "group": "none",
         }
-
     ],
       "inputs": [
         {

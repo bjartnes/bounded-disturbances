@@ -5,6 +5,7 @@
 	// List of extensions which should be recommended for users of this workspace.
 	"recommendations": [
 		"ms-vscode-remote.vscode-remote-extensionpack",
+		"ms-vscode-remote.remote-wsl",
 		"ms-dotnettools.csharp",
 		"ms-azuretools.vscode-docker",
 		"redhat.vscode-yaml",

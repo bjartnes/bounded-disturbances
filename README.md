@@ -54,9 +54,12 @@ or some more complex story...
 
 # Run the tests
 CTRL+SHIFT+P and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
-Open localhost:3000 to see the grafana logs...
 
-# Challenges
+# Dashboards
+Looking at the dashboards at http://localhost:3000 (admin/admin) and importing them... will describe more of that too...
+
+
+# Challenges 
 Open the files such as challenge0test.js and read the instructions in the top of the file. 
 There is a corresponding Controller in api-under-test/Controllers/Challenge0Controller.cs where you must do some
 modifications to get the loadtest to pass.

@@ -36,6 +36,12 @@
             "group": "test",
         },
         {
+            "label": "ping api",
+            "command": "wget http://localhost:5000/weatherforecast_intro",
+            "type": "shell",
+            "group": "test",
+        },
+         {
             "label": "create database",
             "command": "curl -X POST -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE reportdb'",
             "type": "shell",

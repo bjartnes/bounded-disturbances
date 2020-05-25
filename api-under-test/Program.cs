@@ -18,6 +18,9 @@ namespace api_under_test
 
         public static Gauge Retries = Metrics.CreateGauge("polly_retries", "How many");
         public static Gauge TcpConnections = Metrics.CreateGauge("tcpconnections", "How many");
+        public static Gauge GC0= Metrics.CreateGauge("GC0", "How many");
+        public static Gauge GC1= Metrics.CreateGauge("GC1", "How many");
+        public static Gauge GC2= Metrics.CreateGauge("GC2", "How many");
 
         private static Timer _timer;
 
@@ -29,7 +32,7 @@ namespace api_under_test
             
             server.Start();
             
-            _timer = new Timer(LogNetworkInfo, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
+            _timer = new Timer(LogNetworkAndGcInfo, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -40,10 +43,13 @@ namespace api_under_test
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseUrls("http://*:5000", "https://*:5001");
                 });
-        private static void LogNetworkInfo(object state)
+        private static void LogNetworkAndGcInfo(object state)
         {
             var tcpStat = IPGlobalProperties.GetIPGlobalProperties().GetTcpIPv4Statistics();
             TcpConnections.Set(tcpStat.CurrentConnections);
+            GC0.Set(GC.CollectionCount(0));
+            GC1.Set(GC.CollectionCount(1));
+            GC2.Set(GC.CollectionCount(2));
         }
 
     }

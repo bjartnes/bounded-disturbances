@@ -18,7 +18,7 @@
   "gnetId": 4411,
   "graphTooltip": 2,
   "id": 1,
-  "iteration": 1590388384863,
+  "iteration": 1590402001672,
   "links": [],
   "panels": [
     {
@@ -91,7 +91,7 @@
             [
               {
                 "params": [
-                  "dotnet_total_memory_bytes"
+                  "dotnet_gc_allocated_bytes_total"
                 ],
                 "type": "field"
               },
@@ -1506,7 +1506,7 @@
       "yBucketSize": null
     }
   ],
-  "refresh": "5s",
+  "refresh": "15s",
   "schemaVersion": 25,
   "style": "dark",
   "tags": [],
@@ -1610,11 +1610,13 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
+      "1s",
+      "5s",
       "15s"
     ],
     "time_options": [

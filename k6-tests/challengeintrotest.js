@@ -10,7 +10,7 @@ import { Rate } from "k6/metrics";
 
 export let options = {
   vus       : 50,
-  duration  : "30s",
+  duration  : "3m",
   rps       : 500, //max requests per second, increase to go faster
   insecureSkipTLSVerify : true //ignore that localhost cert doesn't match host.docker.internal
   

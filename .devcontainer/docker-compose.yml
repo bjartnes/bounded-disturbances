@@ -29,6 +29,7 @@ services:
       - GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ENFORCE_DOMAIN=false
   telegraf:
     image: telegraf 
     container_name: telegraf 

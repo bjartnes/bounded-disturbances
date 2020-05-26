@@ -36,7 +36,6 @@ RUN apt-get update \
     && apt-get -y update \ 
     && apt-get -y install k6 \
     && apt-get -y install socat \
-
     # Clean up
     && apt-get autoremove -y \
     && apt-get clean -y \

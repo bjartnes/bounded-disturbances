@@ -41,9 +41,15 @@
             "type": "shell",
             "group": "test",
         },
-         {
+        {
             "label": "create database",
             "command": "curl -X POST -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE reportdb'",
+            "type": "shell",
+            "group": "none",
+        },
+        {
+            "label": "forward grafana port",
+            "command": "socat tcp-listen:3000,reuseaddr,fork tcp:grafana:3000",
             "type": "shell",
             "group": "none",
         }

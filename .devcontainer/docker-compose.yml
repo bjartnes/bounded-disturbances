@@ -33,7 +33,6 @@ services:
       - GF_SERVER_ENFORCE_DOMAIN=false
       - GF_SECURITY_COOKIE_SAMESITE=disabled
       - GF_SECURITY_ALLOW_EMBEDDING=true
-      - GF_SECURITY_ALLOW_EMBEDDING=true
   telegraf:
     image: telegraf 
     container_name: telegraf 

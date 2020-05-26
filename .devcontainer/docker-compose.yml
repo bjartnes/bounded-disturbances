@@ -23,13 +23,17 @@ services:
     networks:
       - monitoring
     environment:
-      # Disable authentication
+      # Disable authentication and more or less all security
+      # to be able to run it through forwarded ports in VS Online
       - GF_AUTH_DISABLE_LOGIN_FORM=true
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_NAME=Main Org.
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
       - GF_USERS_ALLOW_SIGN_UP=false
       - GF_SERVER_ENFORCE_DOMAIN=false
+      - GF_SECURITY_COOKIE_SAMESITE=disabled
+      - GF_SECURITY_ALLOW_EMBEDDING=true
+      - GF_SECURITY_ALLOW_EMBEDDING=true
   telegraf:
     image: telegraf 
     container_name: telegraf 

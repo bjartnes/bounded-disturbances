@@ -16,6 +16,8 @@ ARG USER_GID=$USER_UID
 # Avoid warnings by switching to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
 
+ENV DOTNET_USE_POLLING_FILE_WATCHER=1
+
 # Configure apt and install packages
 RUN apt-get update \
     && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \

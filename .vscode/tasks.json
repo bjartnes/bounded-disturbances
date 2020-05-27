@@ -48,6 +48,18 @@
             "group": "none"
         },
         {
+            "label": "create datasource",
+            "command": "scripts/create-datasource.sh",
+            "type": "shell",
+            "group": "none"
+        },
+        {
+            "label": "create dashboards",
+            "command": "scripts/create-dashboard.sh",
+            "type": "shell",
+            "group": "none"
+        },
+        {
             "label": "forward grafana port",
             "command": "socat tcp-listen:3000,reuseaddr,fork tcp:grafana:3000",
             "type": "shell",

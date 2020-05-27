@@ -35,6 +35,7 @@ RUN apt-get update \
     && echo "deb https://dl.bintray.com/loadimpact/deb stable main" | tee -a /etc/apt/sources.list \
     && apt-get -y update \ 
     && apt-get -y install k6 \
+    && apt-get -y install jq \
     && apt-get -y install socat \
     # Clean up
     && apt-get autoremove -y \

@@ -12,9 +12,31 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
 This runs on dotnet core in VS Code and should work on Windows/Linux/Mac, but it requires Docker to work properly set up like
 described here https://code.visualstudio.com/docs/remote/containers.
 
+It also runs online at https://online.visualstudio.com/ which is the easiest way to set things up. 
 # How to run
 
-# Prerequisites
+
+# In Visual Studio Codespace
+Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you just clean up your resources.
+
+Create a new codespace, point it to this repo and start. I just just the default machine size.
+
+Once logged in and everything is set up (takes a few minutes) try to
+Ctrl+Shift+P the following tasks.
+
+Run Build Task: Run and watch web api
+Run Task: setup logging and dashboards
+Run Test Task: Run k6test (choose Intro for example)
+
+To see this in grafana in your browser, you need a few more tricks.
+Run task: forward grafana port
+Codespaces: Copy port URL (select the 3000 one)
+
+Paste that long, cryptic url in your browser and you should be able to navigate to the
+Challenge 0 dashboard (I havent made the other ones yet.)
+
+
+# Locally with docker and VS Code 
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
 Install docker. 

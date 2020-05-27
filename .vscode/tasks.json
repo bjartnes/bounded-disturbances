@@ -42,6 +42,12 @@
             "group": "test",
         },
         {
+            "label": "setup logging and dashboards",
+            "command": "scripts/setup-influx-and-grafana-dashboards.sh",
+            "type": "shell",
+            "group": "none"
+        },
+        {
             "label": "create database",
             "command": "curl -X POST -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE reportdb'",
             "type": "shell",

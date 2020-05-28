@@ -51,7 +51,8 @@ If it does not open it automatically
 Share the repo in Docker
 ![Turn on filesharing](https://user-images.githubusercontent.com/1174441/82738627-4c7a4680-9d39-11ea-9b6a-ab42b9accec3.png)
 
-I have seen the following error if I do not share entire C: drive
+I have seen the following error, and I think it is when you build locally and then afterwards in the images, and the bin and obj folders
+contains messed up references. Try to delete api-under-test/bin and api-under-test/obj if you see this error.
 ```
 (/usr/share/dotnet/sdk/3.1.300/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(234,5): error MSB4018: NuGet.Packaging.Core.PackagingException: Unable to find fallback package folder 'C:\Program Files\dotnet\sdk\NuGetFallbackFolder'. [/workspace/api-under-test/api-under-test.csproj])
 ```

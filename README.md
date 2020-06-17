@@ -24,9 +24,9 @@ Create a new codespace, point it to this repo and start. I just just the default
 Once logged in and everything is set up (takes a few minutes) try to
 Ctrl+Shift+P the following tasks.
 
-Run Build Task: Run and watch web api
-Run Task: setup logging and dashboards
-Run Test Task: Run k6test (choose Intro for example)
+* Run Build Task: Run and watch web api
+* Run Task: setup logging and dashboards
+* Run Test Task: Run k6test (choose Intro for example)
 
 To see this in grafana in your browser, you need a few more tricks.
 Run task: forward grafana port

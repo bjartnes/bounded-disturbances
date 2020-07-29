@@ -9,31 +9,31 @@ The bounded-disturbance term is borrowed from control theory and more specifical
 
 In the workshop we use https://github.com/App-vNext/Polly for resilience-mechanisms and https://github.com/Polly-Contrib/Simmy as a chaos-monkey to introduce our disturbances. For load testing we use k6 (https://k6.io/). For visualization we report to InfluxDB and present the data in Grafa. 
 
-This runs on dotnet core in VS Code and should work on Windows/Linux/Mac, but it requires Docker to work properly set up like
-described here https://code.visualstudio.com/docs/remote/containers.
+  This runs on dotnet core in VS Code and should work on Windows/Linux/Mac, but it requires Docker to work properly set up like
+  described here https://code.visualstudio.com/docs/remote/containers.
 
-It also runs online at https://online.visualstudio.com/ which is the easiest way to set things up. 
-# How to run
+  It also runs online at https://online.visualstudio.com/ which is the easiest way to set things up. 
+  # How to run
 
 
-# In Visual Studio Codespace
-Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you just clean up your resources.
+  # In Visual Studio Codespace
+  Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you just clean up your resources.
 
-Create a new codespace, point it to this repo and start. I just just the default machine size.
+  Create a new codespace, point it to this repo and start. I just just the default machine size.
 
-Once logged in and everything is set up (takes a few minutes) try to
-Ctrl+Shift+P the following tasks.
+  Once logged in and everything is set up (takes a few minutes) try to
+  Ctrl+Shift+P the following tasks.
 
-* Run Build Task: Run and watch web api
-* Run Task: setup logging and dashboards
-* Run Test Task: Run k6test (choose Intro for example)
+  * Run Build Task: Run and watch web api
+  * Run Task: setup logging and dashboards
+  * Run Test Task: Run k6test (choose Intro for example)
 
-To see this in grafana in your browser, you need a few more tricks.
-Run task: forward grafana port
-Codespaces: Copy port URL (select the 3000 one)
+  To see this in grafana in your browser, you need a few more tricks.
+  Run task: forward grafana port
+  Codespaces: Copy port URL (select the 3000 one)
 
-Paste that long, cryptic url in your browser and you should be able to navigate to the
-Challenge 0 dashboard (I havent made the other ones yet.)
+  Paste that long, cryptic url in your browser and you should be able to navigate to the
+  Challenge 0 dashboard (I havent made the other ones yet.)
 
 
 # Locally with docker and VS Code 
@@ -102,7 +102,8 @@ Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
 
 # Intro Challenge
 The intro is just to see that things run properly, so that you don't have to waste time on mechanics of the workshop when actually trying to learn something new. 
-
+You can access the dashboard called IntroChallenge in Grafana.
+There is no Polly, no Simmy here. Try to change the Task.Delay and see if you can see any changes in the dashboard (Remember, if you save and run the dashboard while the test is running, there will be quite a few seconds when everything will fail as the API shuts down and restarts.) 
 
 ## Comments
 

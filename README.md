@@ -101,7 +101,7 @@ In VS Code
 Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
 
 # Intro Challenge
- 
+The intro is just to see that things run properly, so that you don't have to waste time on mechanics of the workshop when actually trying to learn something new. 
 
 
 ## Comments

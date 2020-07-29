@@ -100,9 +100,16 @@ modifications to get the loadtest to pass.
 In VS Code
 Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
 
+# Intro Challenge
+ 
+
+
 ## Comments
 
 There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 
 https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
 https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly
 https://github.com/Polly-Contrib/Polly.Contrib.SimmyDemo_WebApi/blob/master/SimmyDemo_WebApi/Startup.cs#L70
+
+
+

@@ -37,7 +37,7 @@ const myOkRate = new Rate("200 OK rate");
 
 export default function() {
     
-  let response = http.get("https://localhost:5001/weatherforecast_intro", params);
+  let response = http.get("http://localhost:5000/weatherforecast_intro", params);
 
   let resOk = response.status === 200;
   myOkRate.add(resOk);

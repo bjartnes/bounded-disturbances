@@ -81,16 +81,11 @@ The API will reload once changed and should be exposed at http://localhost:5000/
 
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
 
-If you struggle with ssl trust run:
-`dotnet dev-certs https --trust`
-or some more complex story...
-
 # Run the tests
 CTRL+SHIFT+P and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Dashboards
 Looking at the dashboards at http://localhost:3000 (admin/admin) and importing them... will describe more of that too...
-
 
 # Challenges 
 Open the files such as challenge0test.js and read the instructions in the top of the file. 
@@ -101,9 +96,9 @@ In VS Code
 Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
 
 # Intro Challenge
-The intro is just to see that things run properly, so that you don't have to waste time on mechanics of the workshop when actually trying to learn something new. 
+The intro is just to see that things run properly, so that you don't have to waste time on mechanics of the workshop when actually trying to learn something new, get to now to navigate Grafana etc.
 You can access the dashboard called IntroChallenge in Grafana.
-There is no Polly, no Simmy here. Try to change the Task.Delay and see if you can see any changes in the dashboard (Remember, if you save and run the dashboard while the test is running, there will be quite a few seconds when everything will fail as the API shuts down and restarts.) 
+There is no Polly, no Simmy here. Try to change the Task.Delay and see if you can see any changes in the dashboard (Remember, if you save and run the dashboard while the test is running, there will be quite a few seconds when everything will fail as the API shuts down and restarts.) You can also add some exceptions.. And play with the setting for options.rps in challengeintrotest.js to see how it changes things.  
 
 ## Comments
 
@@ -111,6 +106,3 @@ There are several things worth mentioning that one should look into that is igno
 https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
 https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly
 https://github.com/Polly-Contrib/Polly.Contrib.SimmyDemo_WebApi/blob/master/SimmyDemo_WebApi/Startup.cs#L70
-
-
-

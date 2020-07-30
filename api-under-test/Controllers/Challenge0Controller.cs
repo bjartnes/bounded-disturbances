@@ -34,7 +34,7 @@ namespace api_under_test.Controllers
 
             var chaosPolicy = MonkeyPolicy.InjectExceptionAsync(with 
             => with.Fault(fault)
-                   .InjectionRate(0.1)
+                   .InjectionRate(0.15)
                    .Enabled(true));
             var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
             return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
@@ -43,9 +43,9 @@ namespace api_under_test.Controllers
         private IAsyncPolicy GetPolicy() {
             // Fill inn answer by changing code from here
             var retries = 0;
-            Program.Retries.Set(retries);
-            Program.Retries.Publish();
-            var policy = Policy.Handle<Exception>().RetryAsync(retries);
+            Program.ConfiguredRetries.Set(retries);
+            Program.ConfiguredRetries.Publish();
+            var policy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
 
             // to here, anything outside of that is cheating.
             // But cheating is encouraged as long as the rationale and code

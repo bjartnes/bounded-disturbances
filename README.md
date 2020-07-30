@@ -100,6 +100,11 @@ The intro is just to see that things run properly, so that you don't have to was
 You can access the dashboard called IntroChallenge in Grafana.
 There is no Polly, no Simmy here. Try to change the Task.Delay and see if you can see any changes in the dashboard (Remember, if you save and run the dashboard while the test is running, there will be quite a few seconds when everything will fail as the API shuts down and restarts.) You can also add some exceptions.. And play with the setting for options.rps in challengeintrotest.js to see how it changes things.  
 
+# Challenge 0
+We introduce 15% socket errors using Simmy. Try changing the number of retries we perform and see how it affects  
+See if you can make the test green. Pay attention to the rate of 200 OK graph. 
+Can you do the math by paper? Can you reach 100%?
+
 ## Comments
 
 There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 

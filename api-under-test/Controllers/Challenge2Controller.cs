@@ -39,8 +39,8 @@ namespace api_under_test.Controllers
 
         private IAsyncPolicy GetPolicy() {
             var retries = 4;
-            Program.Retries.Set(retries);
-            Program.Retries.Publish();
+            Program.ConfiguredRetries.Set(retries);
+            Program.ConfiguredRetries.Publish();
 //          Fill inn answer by changing code from here
 //          var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
 //          var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(400));

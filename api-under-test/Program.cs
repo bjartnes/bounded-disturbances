@@ -16,8 +16,9 @@ namespace api_under_test
     public class Program
     {
 
-        public static Gauge Retries = Metrics.CreateGauge("polly_retries", "How many");
+        public static Gauge ConfiguredRetries = Metrics.CreateGauge("polly_retries", "How many");
         public static Gauge TcpConnections = Metrics.CreateGauge("tcpconnections", "How many");
+        public static Gauge ExecutedRetries = Metrics.CreateGauge("executed_retries", "How many");
         public static Gauge GC0= Metrics.CreateGauge("GC0", "How many");
         public static Gauge GC1= Metrics.CreateGauge("GC1", "How many");
         public static Gauge GC2= Metrics.CreateGauge("GC2", "How many");

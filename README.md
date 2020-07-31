@@ -95,21 +95,27 @@ modifications to get the loadtest to pass.
 In VS Code
 Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
 
-# Intro Challenge
+## Intro Challenge
 The intro is just to see that things run properly, so that you don't have to waste time on mechanics of the workshop when actually trying to learn something new, get to now to navigate Grafana etc.
 You can access the dashboard called IntroChallenge in Grafana.
 There is no Polly, no Simmy here. Try to change the Task.Delay and see if you can see any changes in the dashboard (Remember, if you save and run the dashboard while the test is running, there will be quite a few seconds when everything will fail as the API shuts down and restarts.) You can also add some exceptions.. And play with the setting for options.rps in challengeintrotest.js to see how it changes things.  
 
-# Challenge 0 - Basic retry
+## Challenge 0 - Basic retry
 We introduce 15% socket errors using Simmy. Try changing the number of retries we perform and see how it affects  
 See if you can make the test green. Pay attention to the rate of 200 OK graph. 
 Can you do the math by paper? Can you reach 100%? Does failures in this case change the performance of the API?
 
-# Challenge 1 - Timeouts
+## Challenge 1 - Timeouts
 In this challenge we introduce latency of 1 second in 10% of the requests.  
 We have a requirement to be faster than than 200 ms in the 95th percentile.
+The correctness requirements are not so hard to meet.
 
-## Comments
+## Challenge 2 - Timeouts, and not giving up
+Now, let us see if we can timeout, but not give up. Maybe, if things are actually just flaky we can try again.
+Remember to compose the policies in the right order, the rightmost argument is the one that happens first (if you draw
+policies as a block diagram, the rightmost policy will be the inner loop of your logic.)
+
+# Comments
 
 There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 
 https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests

@@ -17,6 +17,7 @@ namespace api_under_test
     {
 
         public static Gauge ConfiguredRetries = Metrics.CreateGauge("polly_retries", "How many");
+        public static Gauge ConfiguredTimeout = Metrics.CreateGauge("polly_timeout", "How many milliseconds");
         public static Gauge TcpConnections = Metrics.CreateGauge("tcpconnections", "How many");
         public static Gauge ExecutedRetries = Metrics.CreateGauge("executed_retries", "How many");
         public static Gauge GC0= Metrics.CreateGauge("GC0", "How many");

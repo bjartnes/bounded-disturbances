@@ -5,8 +5,7 @@
  
 import http from "k6/http";
 import { check } from "k6";
-import { Trend } from "k6/metrics";
-import { Rate } from "k6/metrics";
+import { Trend, Rate } from "k6/metrics";
 
 export let options = {
   vus       : 50,

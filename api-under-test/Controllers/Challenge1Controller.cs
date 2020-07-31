@@ -39,13 +39,18 @@ namespace api_under_test.Controllers
         }
 
         private IAsyncPolicy GetPolicy() {
-//          Fill inn answer by changing code from here
-//          var retryPolicy = Policy.Handle<Exception>().RetryAsync(4);
-//          var timeoutPolicy = Policy.TimeoutAsync(TimeSpan.FromMilliseconds(300));
-//          var policy = Policy.WrapAsync(retryPolicy, timeoutPolicy);
-            var policy = Policy.Handle<Exception>().RetryAsync(0);
-//          until here
-            return policy; 
+            // Change these:
+            var retries = 0;
+            var timeout = TimeSpan.FromMilliseconds(30000);
+            Program.ConfiguredTimeout.Set(timeout.TotalMilliseconds);
+            Program.ConfiguredRetries.Set(retries);
+
+            Program.ConfiguredRetries.Publish();
+            Program.ConfiguredTimeout.Publish();
+
+            var retryPolicy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
+            var timeoutPolicy = Policy.TimeoutAsync(timeout);
+            return Policy.WrapAsync(retryPolicy, timeoutPolicy);
         }
 
         private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)

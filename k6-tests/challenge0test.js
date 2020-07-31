@@ -9,8 +9,8 @@
 
 
 import http from "k6/http";
-import { Rate } from "k6/metrics";
-import { Counter } from "k6/metrics";
+
+import { Rate, Counter, Trend } from "k6/metrics";
 
 export let options = {
   vus       : 10,
@@ -24,7 +24,8 @@ export let options = {
  }
 }
 
-const myOkRate = new Rate("200 OK rate");
+export let TrendRTT = new Trend("RTT");
+const myOkRate = new Rate("200 OK");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {
@@ -32,4 +33,5 @@ export default function() {
   let resOk = response.status === 200;
   myOkRate.add(resOk);
   myOkCounter.add(resOk);
+  TrendRTT.add(response.timings.duration);
 };

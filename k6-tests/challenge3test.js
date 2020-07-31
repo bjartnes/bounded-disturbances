@@ -1,7 +1,6 @@
 // This scenario show how to test for both latency and exceptions.
 import http from "k6/http";
-import { Rate } from "k6/metrics";
-import { Counter } from "k6/metrics";
+import { Rate, Trend, Counter } from "k6/metrics";
 
 export let options = {
   vus       : 10,
@@ -15,12 +14,14 @@ export let options = {
  }
 }
 
+export let TrendRTT = new Trend("RTT");
 const myOkRate = new Rate("200 OK rate");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {
   let response = http.get("http://localhost:5000/weatherforecast_challenge3");
   let resOk = response.status === 200;
+  TrendRTT.add(response.timings.duration);
   myOkRate.add(resOk);
   myOkCounter.add(resOk);
 };

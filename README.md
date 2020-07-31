@@ -115,6 +115,10 @@ Now, let us see if we can timeout, but not give up. Maybe, if things are actuall
 Remember to compose the policies in the right order, the rightmost argument is the one that happens first (if you draw
 policies as a block diagram, the rightmost policy will be the inner loop of your logic.)
 
+## Challenge 3 - Timeouts and errors
+Now we are getting closer to real life scenarios. We can have both exceptions and slow responses. 
+Simmy can simulate both these. In this case, we require quite high correctness, even if our service could be failing quite a lot.  
+
 # Comments
 
 There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 

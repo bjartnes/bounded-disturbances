@@ -127,6 +127,10 @@ In order to pass a cancellationtoken, you will need to either create a new one o
 In the challenge we want to cancel all requests so that they do not take longer than 100 ms, even though that means failing some more. What real-life reasons could you think of where this makes sense? What could be the downside of cancelling requests that take 
 a little longer? We need to create a propagate a CancellationToken so that Simmy has a way of cancelling and cleaning up tasks and making sure the request is actually aborted.
 
+## Challenge 5 
+This is really very much the same as challenge 4, but try to use the CancellationToken from the controller instead of creating a new one. You need to properly send it through the ExecuteAsync method in order for Polly to cancel things properly when it times out.
+The behavior for this particular test is very much the same, but can you think of cases where the two ways of doing it behaves differently?
+
 # Comments
 
 There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 

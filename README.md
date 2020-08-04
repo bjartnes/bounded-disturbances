@@ -119,6 +119,14 @@ policies as a block diagram, the rightmost policy will be the inner loop of your
 Now we are getting closer to real life scenarios. We can have both exceptions and slow responses. 
 Simmy can simulate both these. In this case, we require quite high correctness, even if our service could be failing quite a lot.  
 
+## Challenge 4 
+In .NET when we do timeouts we do that through cancellation. There are a few ways for a framework to start and stop something that should be cancelled. What we call optimistic timeout relies on using co-operative timeout, which means passing a cancellationtoken around. If that cancellationtoken requests a cancellation, then tasks should abort what they are doing. The alternative, pessimistic timeout, is not something we will dig into in this workshop but you can read about it here https://github.com/App-vNext/Polly/wiki/Timeout#pessimistic-timeout.
+
+In order to pass a cancellationtoken, you will need to either create a new one or use one that you already have. In ASP.NET MVC, if you add a CancellationToken parameter to the action signature the framework will automatically bind HttpContext.RequestAborted to it. That means if a connection is closed etc, the request to cancel operations is passed on. We will look at that in a later challenge. In Polly, you can use the CancellationToken.None when calling ExecuteAsync to get a new cancellationtoken and pass that on. Using CancellationToken.None is enough for this challenge.
+
+In the challenge we want to cancel all requests so that they do not take longer than 100 ms, even though that means failing some more. What real-life reasons could you think of where this makes sense? What could be the downside of cancelling requests that take 
+a little longer? We need to create a propagate a CancellationToken so that Simmy has a way of cancelling and cleaning up tasks and making sure the request is actually aborted.
+
 # Comments
 
 There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 

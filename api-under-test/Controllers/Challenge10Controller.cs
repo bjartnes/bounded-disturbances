@@ -33,17 +33,12 @@ namespace api_under_test.Controllers
         }
 
         [HttpGet]
-//        public async Task<string> Get(CancellationToken ct)
+        //public async Task<string> Get(CancellationToken ct)
         public async Task<string> Get()
         {
             var policy = GetPolicy();
             // We can also use someone elses token, the rest should be quite similar to challenge 4
-            //return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None); 
-            try {
-                return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None); 
-            } catch (OperationCanceledException _) {
-                return "canceled"; 
-            }
+            return await policy.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None); 
         }
 
         private IAsyncPolicy GetPolicy() {
@@ -62,8 +57,11 @@ namespace api_under_test.Controllers
         }
         private async Task<string> GetForecasts(CancellationToken ct)
         {
-            return (await Recursive(1, ct)).ToString();
+            if (_rng.NextDouble() > 0.95) {
+                return (await Recursive(1, ct)).ToString(); 
+            } else {
+                return "lucky number";
+            }
         }
-
     }
 }

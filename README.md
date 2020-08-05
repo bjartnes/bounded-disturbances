@@ -131,6 +131,17 @@ a little longer? We need to create a propagate a CancellationToken so that Simmy
 This is really very much the same as challenge 4, but try to use the CancellationToken from the controller instead of creating a new one. You need to properly send it through the ExecuteAsync method in order for Polly to cancel things properly when it times out.
 The behavior for this particular test is very much the same, but can you think of cases where the two ways of doing it behaves differently?
 
+## Challenge 6 
+Idempotency and retrying... 
+Hint: Look for what the System.InvalidOperationException says.
+There is no dashboard for this challenge.
+
+## Challenge 10
+By setting a timeout of 10 ms in the k6 test, the requests will be cancelled by the client.
+The Challenge 10 controller is set up as a timebomb, and 5% of the requests will take longer and if they are not cancelled they will exit the web api application and crash the entire service. Therefore, the challenge requires that the API is written in a way such that it will cancel the request and its tasks when the client closes the connection.
+
+Try to think of how this timing out based on closed connections can affect an API with respect to issues such as caching slow requests.
+
 # Comments
 
 There are several things worth mentioning that one should look into that is ignored in this workshop to make it easy to work with the code. 

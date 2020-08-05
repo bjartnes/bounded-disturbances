@@ -1,37 +1,37 @@
 import http from "k6/http";
-import { check } from "k6";
-import { Trend } from "k6/metrics";
+import { Trend, Rate, Counter } from "k6/metrics";
+
+export let TrendRTT = new Trend("RTT");
+const myOkRate = new Rate("200 OK rate");
+const myOkCounter = new Counter("200 OK count");
 
 export let options = {
   vus       : 10,
   duration  : "10s",
-//  rps       : 25, //max requests per second, increase to go faster
-  insecureSkipTLSVerify : true //ignore that localhost cert doesn't match host.docker.internal
-  
+  rps       : 200, //max requests per second, increase to go faster
+  insecureSkipTLSVerify : true, //ignore that localhost cert doesn't match host.docker.internal
+  thresholds: {
+    '200 OK rate': ['rate>0.8'],
+    '200 OK count': ['count>200'],
+    'http_req_duration': ['p(95)<100']
+ }
 }
-
-export let TrendRTT = new Trend("RTT");
 
 let params = {
   headers: {
     "Accept": "*/*",
     "Accept-Encoding": "gzip",
     "User-Agent" : "nrktv-k6-loadtest"
-  },thresholds: {
-    "RTT": [
-      "p(95)<200"
-    ],
-    "Errors": ["rate<0.01"],
-    "Content OK": ["count>200"]
-},
- timeout: 10 //ms
+  },
+  timeout: 50 //ms
 }
 
 export default function() {
     
-  let response = http.get("http://localhost:5000/weatherforecast_challenge10", params);
-  check( response, { "200 OK": res => res.status === 200 } );
-
-  TrendRTT.add(response.timings.duration);
+  let res = http.get("http://localhost:5000/weatherforecast_challenge10", params);
+  TrendRTT.add(res.timings.duration);
+  let resOk = res.status === 200;
+  myOkRate.add(resOk);
+  myOkCounter.add(resOk);
   
 };

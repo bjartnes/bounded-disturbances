@@ -136,6 +136,11 @@ Idempotency and retrying...
 Hint: Look for what the System.InvalidOperationException says.
 There is no dashboard for this challenge.
 
+## Challenge 7 - Thinking fast and slow
+Some resources are slower than other. We want fast retries to make the fast requests fast when things are slow, but we also
+want the slowest requests to succeed. 
+
+
 ## Challenge 10
 By setting a timeout of 10 ms in the k6 test, the requests will be cancelled by the client.
 The Challenge 10 controller is set up as a timebomb, and 5% of the requests will take longer and if they are not cancelled they will exit the web api application and crash the entire service. Therefore, the challenge requires that the API is written in a way such that it will cancel the request and its tasks when the client closes the connection.

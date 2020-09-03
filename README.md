@@ -18,6 +18,7 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
   
   # How to run
 
+If you struggle to understand something in this README, I consider it a usability bug, so please submit a github issue, ping me on twitter or something. 
 
   # In Visual Studio Codespace
   Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you just clean up your resources.
@@ -40,7 +41,7 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
 
 
 # Locally with docker and VS Code 
-(There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered)
+(There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Before of ports that are already in use etc)
 
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
@@ -67,10 +68,16 @@ If you want to have Docker metrics in Grafana turn on this
 
 # Setting up dashboards and datasources
 
-Run the task (Ctrl+Shift+P) to create the database.
+Run the task (Ctrl+Shift+P) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to fint the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue wihtout scanning the task output")
+![Continue without scanning the task output](https://user-images.githubusercontent.com/1174441/92082006-40843300-edc4-11ea-893e-64a880408def.png)
+
+  * Run Build Task: Run and watch web api
+  * Run Task: setup logging and dashboards
+  * Run Test Task: Run k6test (choose Intro for example)
+  
 ![Create the database in Influx](https://user-images.githubusercontent.com/1174441/82750736-660ba480-9db2-11ea-9358-baa1e80d9c63.png)
 
-![Add influx DB datasource](https://user-images.githubusercontent.com/1174441/82738661-9531ff80-9d39-11ea-83a1-690f7c78be6c.png)
+
 
 # Starting the API
 

@@ -40,6 +40,8 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
 
 
 # Locally with docker and VS Code 
+(There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered)
+
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
 Install docker. 

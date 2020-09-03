@@ -13,6 +13,9 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
   described here https://code.visualstudio.com/docs/remote/containers.
 
   It also runs online at https://online.visualstudio.com/ which is the easiest way to set things up. 
+  
+  For an intro to Polly - which could be a nice background - I would recommend watching  https://www.youtube.com/watch?v=2kfCXMoVCqM and perhaps code-along with the examples here https://github.com/App-vNext/Polly-Samples/
+  
   # How to run
 
 

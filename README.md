@@ -63,9 +63,6 @@ contains messed up references. Try to delete api-under-test/bin and api-under-te
 If you want to have Docker metrics in Grafana turn on this
 ![You do not have to, but for Docker metrics](https://user-images.githubusercontent.com/1174441/82738633-5c922600-9d39-11ea-83bb-ea0bf358645a.png)
 
-Run the scripts in /k6-local-logging/ (setup-volumes.ps1), docker-compose up and create-report-db.ps1. I will write some more details on this, probably wrap it in one script and also make something for Linux Mac on this (it is almost the same commands...)
-
-
 # Setting up dashboards and datasources
 
 Run the task (Ctrl+Shift+P) to create the database.

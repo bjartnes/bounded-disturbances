@@ -34,3 +34,4 @@ msbuild.wrn
 #NBomber
 reports/
 .fake
+/README.html

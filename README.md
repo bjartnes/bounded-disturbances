@@ -48,7 +48,8 @@ You will get a lot of these ![install  extension](https://user-images.githubuser
 to install extensions, and then asked to relead the folder in the Docker images and just go yes, yes, sure, reload etc. And
 wait when it asks you too, downloading and building all the images can take a while the first time.
 
-If it does not open it automatically
+If it does not open it automatically hit ctrl+shift+p and type "remote-containers Open work" - or enough for the autocomplete to find the following task: 
+
 ![Open the folder in the workspace](https://user-images.githubusercontent.com/1174441/82751510-04e6cf80-9db8-11ea-9040-47e122c98e11.png)
 ## On Windows
 Share the repo in Docker

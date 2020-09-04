@@ -1,4 +1,4 @@
-# bounded-disturbances / chaos engineering
+# Bounded-disturbances / chaos engineering
 
 This repository is for a workshop to understand how to introduce and deal with a bounded disturbance.
 By bounded disturbance I mean an error in a dependency such as less than 1% socket errors and/or less than 10% timeouts of maximum 5 seconds.
@@ -16,11 +16,12 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
   
   For an intro to Polly - which could be a nice background - I would recommend watching  https://www.youtube.com/watch?v=2kfCXMoVCqM and perhaps code-along with the examples here https://github.com/App-vNext/Polly-Samples/
   
-  # How to run
+# How to run
 
 If you struggle to understand something in this README, I consider it a usability bug, so please submit a github issue, ping me on twitter or something. 
 
-  # In Visual Studio Codespace
+## In Visual Studio Codespace
+
   Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you just clean up your resources.
 
   Create a new codespace, point it to this repo and start. I just just the default machine size.
@@ -40,33 +41,29 @@ If you struggle to understand something in this README, I consider it a usabilit
   Challenge 0 dashboard (I havent made the other ones yet.)
 
 
-# Locally with docker and VS Code 
-(There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Before of ports that are already in use etc)
+## Locally with docker and VS Code 
+(There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Beware of ports that are already in use etc)
 
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
 Install docker. 
 
-You will get a lot of these ![install  extension](https://user-images.githubusercontent.com/1174441/82751431-85590080-9db7-11ea-8a6a-7728a0a1c877.png) 
-to install extensions, and then asked to relead the folder in the Docker images and just go yes, yes, sure, reload etc. And
-wait when it asks you too, downloading and building all the images can take a while the first time.
+Open VS Code and choose "File" - "Open Folder" (CTRL K + CTRL O) and select the folder where you cloned the repo. Wait for the popup and choose "Reopen folder to develop in a container".
 
-If it does not open it automatically hit ctrl+shift+p and type "remote-containers Open work" - or enough for the autocomplete to find the following task: 
+![Reopen folder to develop in a container](https://user-images.githubusercontent.com/1174441/92221305-9082f880-ee9d-11ea-8e31-28dd9729b110.png)
+
+You will get a lot of these ![install  extension](https://user-images.githubusercontent.com/1174441/82751431-85590080-9db7-11ea-8a6a-7728a0a1c877.png) 
+asking you to install extensions, and then asked to relead the folder in the Docker images and just go yes, yes, sure, reload etc. And wait when it asks you too, downloading and building all the images can take a while the first time.
+
+If the docker images for some reason does not build and open automatically hit ctrl+shift+p and type "remote-containers Open work" - or enough for the autocomplete to find the following task: 
 
 ![Open the folder in the workspace](https://user-images.githubusercontent.com/1174441/82751510-04e6cf80-9db8-11ea-9040-47e122c98e11.png)
-## On Windows
-Share the repo in Docker
+
+### On Windows
+Depending on versions of docker and WSL you might have to share the repo in Docker
 ![Turn on filesharing](https://user-images.githubusercontent.com/1174441/82738627-4c7a4680-9d39-11ea-9b6a-ab42b9accec3.png)
 
-I have seen the following error, and I think it is when you build locally and then afterwards in the images, and the bin and obj folders
-contains messed up references. Try to delete api-under-test/bin and api-under-test/obj if you see this error.
-```
-(/usr/share/dotnet/sdk/3.1.300/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(234,5): error MSB4018: NuGet.Packaging.Core.PackagingException: Unable to find fallback package folder 'C:\Program Files\dotnet\sdk\NuGetFallbackFolder'. [/workspace/api-under-test/api-under-test.csproj])
-```
-If you want to have Docker metrics in Grafana turn on this
-![You do not have to, but for Docker metrics](https://user-images.githubusercontent.com/1174441/82738633-5c922600-9d39-11ea-83bb-ea0bf358645a.png)
-
-# Setting up dashboards and datasources
+## Setting up dashboards and datasources
 
 Run the task (Ctrl+Shift+P) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to fint the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue wihtout scanning the task output")
 ![Continue without scanning the task output](https://user-images.githubusercontent.com/1174441/92082006-40843300-edc4-11ea-893e-64a880408def.png)
@@ -75,17 +72,13 @@ Run the task (Ctrl+Shift+P) to run tasks and run the following tasks. (If you ca
   * Run Task: setup logging and dashboards
   * Run Test Task: Run k6test (choose Intro for example)
   
-![Create the database in Influx](https://user-images.githubusercontent.com/1174441/82750736-660ba480-9db2-11ea-9358-baa1e80d9c63.png)
-
+![Creating databases and so on](https://user-images.githubusercontent.com/1174441/92223130-4cddbe00-eea0-11ea-80a9-8aa5c7e2d7d1.png)
 
 
 # Starting the API
 
 It should work to use CTRL+SHIFT+P and select "Run Build Task" and then select - "watch" to start the API.
 Also, the button - I will make screenshots - should work.
-
-Or you can use the button
-![To start the API with the play button](https://user-images.githubusercontent.com/1174441/82750720-4c6a5d00-9db2-11ea-8149-90c020fa2148.png)
 
 The API will reload once changed and should be exposed at http://localhost:5000/weatherforecast_intro
 
@@ -95,7 +88,9 @@ The watch and test commands runs in different terminal tabs, see the red ring in
 CTRL+SHIFT+P and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Dashboards
-Looking at the dashboards at http://localhost:3000 (admin/admin) and importing them... will describe more of that too...
+The dashboards at http://localhost:3000 (admin/admin), or at the cryptic URL mentioned above if you use Visual Studio Codespace.
+
+![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/92224841-ac3ccd80-eea2-11ea-900e-bf06db1c2372.png)
 
 # Challenges 
 Open the files such as challenge0test.js and read the instructions in the top of the file. 
@@ -163,3 +158,35 @@ There are several things worth mentioning that one should look into that is igno
 https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests
 https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/implement-http-call-retries-exponential-backoff-polly
 https://github.com/Polly-Contrib/Polly.Contrib.SimmyDemo_WebApi/blob/master/SimmyDemo_WebApi/Startup.cs#L70
+
+# Troubleshooting and other comments on docker setup
+If you struggle with docker locally, please try Visual Studio Codespaces.
+
+## Port errors
+If any of the ports are in use on your system things will not start up properly. 
+On windows to see who for example binds to port 3000 try
+
+```
+netstat -aof | findstr :3000
+```
+It takes a while sometimes to scan, but killing the process and try to reopen the folder should work.
+
+
+## "docker-credential-gcloud not installed or not available in PATH"
+Delete the relevant references in <user-mappe>\.docker\config.json
+
+
+## Build errors
+I have seen the following error, and I think it is when you build locally and then afterwards in the images, and the bin and obj folders
+contains messed up references. Try to delete api-under-test/bin and api-under-test/obj if you see this error.
+```
+(/usr/share/dotnet/sdk/3.1.300/Sdks/Microsoft.NET.Sdk/targets/Microsoft.PackageDependencyResolution.targets(234,5): error MSB4018: NuGet.Packaging.Core.PackagingException: Unable to find fallback package folder 'C:\Program Files\dotnet\sdk\NuGetFallbackFolder'. [/workspace/api-under-test/api-under-test.csproj])
+```
+
+## If you want to have Docker metrics in Grafana turn on this
+![You do not have to, but for Docker metrics](https://user-images.githubusercontent.com/1174441/82738633-5c922600-9d39-11ea-83bb-ea0bf358645a.png)
+
+You also have to uncomment the line here:  
+https://github.com/bjartwolf/bounded-disturbances/blob/1adb836b14f2947b19360f06a4b7c39084ec4c4e/telegraf-volume/telegraf.conf#L171
+
+I haven't tested it in a while, but it should allow for scraping of docker metrics to show in Grafana.

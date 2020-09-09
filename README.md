@@ -27,7 +27,7 @@ If you struggle to understand something in this README, I consider it a usabilit
   Create a new codespace, point it to this repo and start. I just just the default machine size.
 
   Once logged in and everything is set up (takes a few minutes) try to
-  Ctrl+Shift+P the following tasks.
+  <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> the following tasks.
 
   * Run Build Task: Run and watch web api
   * Run Task: setup logging and dashboards
@@ -48,7 +48,7 @@ To run the workshop clone the repo, install VS Code from https://code.visualstud
 
 Install docker. 
 
-Open VS Code and choose "File" - "Open Folder" (CTRL K + CTRL O) and select the folder where you cloned the repo. Wait for the popup and choose "Reopen folder to develop in a container".
+Open VS Code and choose "File" - "Open Folder" (<kbd>CTRL</kbd> <kbd>K</kbd> + <kbd>CTRL</kdb> <kbd>O</kdb>) and select the folder where you cloned the repo. Wait for the popup and choose "Reopen folder to develop in a container".
 
 ![Reopen folder to develop in a container](https://user-images.githubusercontent.com/1174441/92221305-9082f880-ee9d-11ea-8e31-28dd9729b110.png)
 
@@ -65,7 +65,7 @@ Depending on versions of docker and WSL you might have to share the repo in Dock
 
 ## Setting up dashboards and datasources
 
-Run the task (Ctrl+Shift+P) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to fint the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue wihtout scanning the task output")
+Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kdb>+<kbd>P</kbd>) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to fint the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue wihtout scanning the task output")
 ![Continue without scanning the task output](https://user-images.githubusercontent.com/1174441/92082006-40843300-edc4-11ea-893e-64a880408def.png)
 
   * Run Build Task: Run and watch web api
@@ -77,20 +77,20 @@ Run the task (Ctrl+Shift+P) to run tasks and run the following tasks. (If you ca
 
 # Starting the API
 
-It should work to use CTRL+SHIFT+P and select "Run Build Task" and then select - "watch" to start the API.
-Also, the button - I will make screenshots - should work.
+It should work to use <kbd>CTRL</kbd>+<kbd>SHIFT</kdb>+<kbd>P</kbd> and select "Run Build Task" and then select - "watch" to start the API.
+  Also, the button - I will make screenshots - should work.
 
 The API will reload once changed and should be exposed at http://localhost:5000/weatherforecast_intro
 
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
 
 # Run the tests
-CTRL+SHIFT+P and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
+<kbd>CTRL</kbd>+<kbd>SHIFT</kdb>+<kbd>P</kbd> and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Dashboards
 The dashboards at http://localhost:3000 (admin/admin), or at the cryptic URL mentioned above if you use Visual Studio Codespace.
 
-![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/92224841-ac3ccd80-eea2-11ea-900e-bf06db1c2372.png)
+  ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/92224841-ac3ccd80-eea2-11ea-900e-bf06db1c2372.png)
 
 # Challenges 
 Open the files such as challenge0test.js and read the instructions in the top of the file. 
@@ -98,7 +98,7 @@ There is a corresponding Controller in api-under-test/Controllers/Challenge0Cont
 modifications to get the loadtest to pass.
 
 In VS Code
-Ctrl-Shift-P -> Run test task -> Run k6test Windows|Linux
+<kbd>CTRL</kbd>+<kbd>SHIFT</kdb>+<kbd>P</kbd> > Run test task -> Run k6test Windows|Linux
 
 ## Intro Challenge
 The intro is just to see that things run properly, so that you don't have to waste time on mechanics of the workshop when actually trying to learn something new, get to now to navigate Grafana etc.

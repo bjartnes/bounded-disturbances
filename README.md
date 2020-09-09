@@ -65,7 +65,7 @@ Depending on versions of docker and WSL you might have to share the repo in Dock
 
 ## Setting up dashboards and datasources
 
-Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kdb>+<kbd>P</kbd>) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to fint the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue wihtout scanning the task output")
+Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to fint the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue wihtout scanning the task output")
 ![Continue without scanning the task output](https://user-images.githubusercontent.com/1174441/92082006-40843300-edc4-11ea-893e-64a880408def.png)
 
   * Run Build Task: Run and watch web api

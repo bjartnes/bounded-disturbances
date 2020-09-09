@@ -1,8 +1,8 @@
 # Bounded-disturbances / chaos engineering
 
 This repository is for a workshop to understand how to introduce and deal with a bounded disturbance.
-By bounded disturbance I mean an error in a dependency such as less than 1% socket errors and/or less than 10% timeouts of maximum 5 seconds.
-Under these bounded disturbances on our dependencies we still want to maintain stricter SLAs to our consumers, such as less than 0.01% errors 
+  By bounded disturbance I mean an error in a dependency such as less than 1% socket errors and/or less than 10% timeouts of maximum 5 seconds.
+  Under these bounded disturbances on our dependencies we still want to maintain stricter SLAs to our consumers, such as less than 0.01% errors 
 and a 99% response time of less than 150 milliseconds.
 
 The bounded-disturbance term is borrowed from control theory and more specifically robust control. It is probably covering excactly the same as chaos engineering, but I prefer it as it deals less with chaos and more with designing a system with a fixed set of parameters (timeouts, retries etc) that perform within a given set of constraints when the system performs different from its normal/design conditions. So rather than talking about chaos, we will talk about how robust the system is when a dependency that normally responds within 10 milliseconds responds in 10 seconds for 1% of its requests.
@@ -77,7 +77,7 @@ Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kdb>+<kbd>P</kbd>) to run tasks and ru
 
 # Starting the API
 
-It should work to use <kbd>CTRL</kbd>+<kbd>SHIFT</kdb>+<kbd>P</kbd> and select "Run Build Task" and then select - "watch" to start the API.
+It should work to use <kbd>CTRL</kbd>+<kbd>SHIFT</kbd> + <kbd>P</kbd> and select "Run Build Task" and then select - "watch" to start the API.
   Also, the button - I will make screenshots - should work.
 
 The API will reload once changed and should be exposed at http://localhost:5000/weatherforecast_intro
@@ -85,7 +85,7 @@ The API will reload once changed and should be exposed at http://localhost:5000/
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
 
 # Run the tests
-<kbd>CTRL</kbd>+<kbd>SHIFT</kdb>+<kbd>P</kbd> and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
+<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Dashboards
 The dashboards at http://localhost:3000 (admin/admin), or at the cryptic URL mentioned above if you use Visual Studio Codespace.
@@ -98,7 +98,7 @@ There is a corresponding Controller in api-under-test/Controllers/Challenge0Cont
 modifications to get the loadtest to pass.
 
 In VS Code
-<kbd>CTRL</kbd>+<kbd>SHIFT</kdb>+<kbd>P</kbd> > Run test task -> Run k6test Windows|Linux
+<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> > Run test task -> Run k6test Windows|Linux
 
 ## Intro Challenge
 The intro is just to see that things run properly, so that you don't have to waste time on mechanics of the workshop when actually trying to learn something new, get to now to navigate Grafana etc.

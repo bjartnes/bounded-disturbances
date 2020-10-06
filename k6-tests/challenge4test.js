@@ -1,12 +1,6 @@
-
-    // Some annoying real-world things we must think of regarding cancellations
-    // Ideally they could be run first, but this is more of a nescessity than the core 
-    // motivation for the workshop, so we add them here, sort of in the middle of the workshop.
-    // By now you should be motivated, but not so tired that you skip the hard parts.
-
+// This scenario show how to test for both latency and exceptions.
 import http from "k6/http";
-import { Rate } from "k6/metrics";
-import { Counter } from "k6/metrics";
+import { Rate, Trend, Counter } from "k6/metrics";
 
 export let options = {
   vus       : 10,
@@ -14,18 +8,20 @@ export let options = {
   rps       : 200, //max requests per second, increase to go faster
   insecureSkipTLSVerify : true, //ignore that localhost cert doesn't match host.docker.internal
   thresholds: {
-    '200 OK rate': ['rate>0.5'],
+    '200 OK rate': ['rate>0.999'],
     '200 OK count': ['count>200'],
-    'http_req_duration': ['p(95)<100']
+    'http_req_duration': ['p(95)<200']
  }
 }
 
+export let TrendRTT = new Trend("RTT");
 const myOkRate = new Rate("200 OK rate");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {
-  let response = http.get("http://localhost:5000/weatherforecast_challenge5");
+  let response = http.get("http://localhost:5000/weatherforecast_challenge4");
   let resOk = response.status === 200;
+  TrendRTT.add(response.timings.duration);
   myOkRate.add(resOk);
   myOkCounter.add(resOk);
 };

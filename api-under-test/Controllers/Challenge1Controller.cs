@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Contrib.Simmy;
-using Polly.Contrib.Simmy.Latency;
+using Polly.Contrib.Simmy.Outcomes;
 using System.Threading;
 
 namespace api_under_test.Controllers
@@ -30,23 +30,29 @@ namespace api_under_test.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-           var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
-                with.Latency(TimeSpan.FromSeconds(1))
-                    .InjectionRate(0.1) // 10 % 
-                    .Enabled(true));    // Would probably only turn it on in some environments
+            Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
+
+            var chaosPolicy = MonkeyPolicy.InjectExceptionAsync(with 
+            => with.Fault(fault)
+                   .InjectionRate(0.15)
+                   .Enabled(true));
             var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
             return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
         }
 
         private IAsyncPolicy GetPolicy() {
-            // Change these:
-            var timeout = TimeSpan.FromMilliseconds(30000);
-            Program.ConfiguredTimeout.Set(timeout.TotalMilliseconds);
-
+            // Fill inn answer by changing code from here
+            var retries = 0;
+            Program.ConfiguredRetries.Set(retries);
             Program.ConfiguredRetries.Publish();
-            Program.ConfiguredTimeout.Publish();
+            var policy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
 
-            return Policy.TimeoutAsync(timeout);
+            // to here, anything outside of that is cheating.
+            // But cheating is encouraged as long as the rationale and code
+            // is shared with the workshop :)
+            // Also, if you cheat or add something fun, consider making a PR for a new 
+            // challenge to the workshop!
+            return policy; 
         }
 
         private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)

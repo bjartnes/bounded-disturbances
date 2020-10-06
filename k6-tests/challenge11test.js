@@ -28,7 +28,7 @@ let params = {
 
 export default function() {
     
-  let res = http.get("http://localhost:5000/weatherforecast_challenge10", params);
+  let res = http.get("http://localhost:5000/weatherforecast_challenge11", params);
   TrendRTT.add(res.timings.duration);
   let resOk = res.status === 200;
   myOkRate.add(resOk);

@@ -7,7 +7,6 @@ using Microsoft.Extensions.Logging;
 using Polly;
 using Polly.Contrib.Simmy;
 using Polly.Contrib.Simmy.Latency;
-using Polly.Contrib.Simmy.Outcomes;
 using System.Threading;
 
 namespace api_under_test.Controllers
@@ -15,8 +14,7 @@ namespace api_under_test.Controllers
     [ApiController]
     [Route("weatherforecast_challenge3")]
     public class Challenge3Controller: ControllerBase
-    {
-        private static readonly string[] Summaries = new[]
+    { private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
@@ -31,20 +29,11 @@ namespace api_under_test.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-           Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
-           var latencyMonkey = MonkeyPolicy.InjectLatencyAsync(with =>
+           var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
-                    .InjectionRate(0.1) 
-                    .Enabled(true));
-
-            var errorMonkey = MonkeyPolicy.InjectExceptionAsync(with => 
-                with.Fault(fault)
-                    .InjectionRate(0.1)
-                    .Enabled(true));
- 
-            var monkeyPolicy = Policy.WrapAsync(latencyMonkey, errorMonkey);
-
-            var mix = Policy.WrapAsync(GetPolicy(), monkeyPolicy);
+                    .InjectionRate(0.05) // 10 % 
+                    .Enabled(true));    // Would probably only turn it on in some environments
+            var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
             return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
         }
 
@@ -60,13 +49,13 @@ namespace api_under_test.Controllers
 
             var retryPolicy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
             var timeoutPolicy = Policy.TimeoutAsync(timeout);
-            return Policy.WrapAsync(retryPolicy, timeoutPolicy);
+            return Policy.WrapAsync(timeoutPolicy, retryPolicy);
             // until here
         }
 
         private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)
         {
-            await Task.Delay(20, ct);
+            await Task.Delay(1, ct);
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

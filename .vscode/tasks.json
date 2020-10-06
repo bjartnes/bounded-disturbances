@@ -79,7 +79,6 @@
         "description": "Which test do you want to run?",
         "options": [
             "intro",
-            "0",
             "1",
             "2",
             "3",
@@ -89,7 +88,8 @@
             "7",
             "8",
             "9",
-            "10"
+            "10",
+            "11"
         ],
         "default": "intro"
         }

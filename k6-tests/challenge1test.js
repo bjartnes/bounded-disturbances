@@ -1,6 +1,6 @@
     // The next challenge introduces latency of 1 second to 10% of dependencies using Simmy.  
     // Notice that the chaos must be wrapped as the last argument so that it runs inside the retries (try changing that...?)
-    // Change the policy in Challenge1Controller.cs
+    // Change the policy in Challenge2Controller.cs
  
 import http from "k6/http";
 import { Rate, Counter, Trend } from "k6/metrics";
@@ -22,7 +22,7 @@ const myOkRate = new Rate("200 OK rate");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {
-  let response = http.get("http://localhost:5000/weatherforecast_challenge1");
+  let response = http.get("http://localhost:5000/weatherforecast_challenge2");
   let resOk = response.status === 200;
   myOkRate.add(resOk);
   myOkCounter.add(resOk);

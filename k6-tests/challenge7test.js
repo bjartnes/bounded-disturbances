@@ -20,7 +20,7 @@ const myOkRate = new Rate("200 OK rate");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {
-  let url = "http://localhost:5000/weatherforecast_challenge7";
+  let url = "http://localhost:5000/weatherforecast_challenge8";
   let urls = [url + "/1", url + "/2", url + "/3", url + "/4"];
 
   let rnd = Math.floor(Math.random() * 4);

@@ -38,7 +38,7 @@ If you struggle to understand something in this README, I consider it a usabilit
   Codespaces: Copy port URL (select the 3000 one)
 
   Paste that long, cryptic url in your browser and you should be able to navigate to the
-  Challenge 0 dashboard (I havent made the other ones yet.)
+  Challenge 1 dashboard (I havent made the other ones yet.)
 
 
 ## Locally with docker and VS Code 
@@ -93,8 +93,8 @@ The dashboards at http://localhost:3000 (admin/admin), or at the cryptic URL men
   ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/92224841-ac3ccd80-eea2-11ea-900e-bf06db1c2372.png)
 
 # Challenges 
-Open the files such as challenge0test.js and read the instructions in the top of the file. 
-There is a corresponding Controller in api-under-test/Controllers/Challenge0Controller.cs where you must do some
+Open the files such as challenge1test.js and read the instructions in the top of the file. 
+There is a corresponding Controller in api-under-test/Controllers/Challenge1Controller.cs where you must do some
 modifications to get the loadtest to pass.
 
 In VS Code
@@ -105,26 +105,26 @@ The intro is just to see that things run properly, so that you don't have to was
 You can access the dashboard called IntroChallenge in Grafana.
 There is no Polly, no Simmy here. Try to change the Task.Delay and see if you can see any changes in the dashboard (Remember, if you save and run the dashboard while the test is running, there will be quite a few seconds when everything will fail as the API shuts down and restarts.) You can also add some exceptions.. And play with the setting for options.rps in challengeintrotest.js to see how it changes things.  
 
-## Challenge 0 - Basic retry
+## Challenge 1 - Basic retry
 We introduce 15% socket errors using Simmy. Try changing the number of retries we perform and see how it affects  
 See if you can make the test green. Pay attention to the rate of 200 OK graph. 
 Can you do the math by paper? Can you reach 100%? Does failures in this case change the performance of the API?
 
-## Challenge 1 - Timeouts
+## Challenge 2 - Timeouts
 In this challenge we introduce latency of 1 second in 10% of the requests.  
 We have a requirement to be faster than than 200 ms in the 95th percentile.
 The correctness requirements are not so hard to meet.
 
-## Challenge 2 - Timeouts, and not giving up
+## Challenge 3 - Timeouts, and not giving up
 Now, let us see if we can timeout, but not give up. Maybe, if things are actually just flaky we can try again.
 Remember to compose the policies in the right order, the rightmost argument is the one that happens first (if you draw
 policies as a block diagram, the rightmost policy will be the inner loop of your logic.)
 
-## Challenge 3 - Timeouts and errors
+## Challenge 4 - Timeouts and errors
 Now we are getting closer to real life scenarios. We can have both exceptions and slow responses. 
 Simmy can simulate both these. In this case, we require quite high correctness, even if our service could be failing quite a lot.  
 
-## Challenge 4 
+## Challenge 5 
 In .NET when we do timeouts we do that through cancellation. There are a few ways for a framework to start and stop something that should be cancelled. What we call optimistic timeout relies on using co-operative timeout, which means passing a cancellationtoken around. If that cancellationtoken requests a cancellation, then tasks should abort what they are doing. The alternative, pessimistic timeout, is not something we will dig into in this workshop but you can read about it here https://github.com/App-vNext/Polly/wiki/Timeout#pessimistic-timeout.
 
 In order to pass a cancellationtoken, you will need to either create a new one or use one that you already have. In ASP.NET MVC, if you add a CancellationToken parameter to the action signature the framework will automatically bind HttpContext.RequestAborted to it. That means if a connection is closed etc, the request to cancel operations is passed on. We will look at that in a later challenge. In Polly, you can use the CancellationToken.None when calling ExecuteAsync to get a new cancellationtoken and pass that on. Using CancellationToken.None is enough for this challenge.
@@ -132,23 +132,23 @@ In order to pass a cancellationtoken, you will need to either create a new one o
 In the challenge we want to cancel all requests so that they do not take longer than 100 ms, even though that means failing some more. What real-life reasons could you think of where this makes sense? What could be the downside of cancelling requests that take 
 a little longer? We need to create a propagate a CancellationToken so that Simmy has a way of cancelling and cleaning up tasks and making sure the request is actually aborted.
 
-## Challenge 5 
-This is really very much the same as challenge 4, but try to use the CancellationToken from the controller instead of creating a new one. You need to properly send it through the ExecuteAsync method in order for Polly to cancel things properly when it times out.
+## Challenge 6 
+This is really very much the same as challenge 5, but try to use the CancellationToken from the controller instead of creating a new one. You need to properly send it through the ExecuteAsync method in order for Polly to cancel things properly when it times out.
 The behavior for this particular test is very much the same, but can you think of cases where the two ways of doing it behaves differently?
 
-## Challenge 6 
+## Challenge 7 
 Idempotency and retrying... 
 Hint: Look for what the System.InvalidOperationException says.
 There is no dashboard for this challenge.
 
-## Challenge 7 - Thinking fast and slow
+## Challenge 8 - Thinking fast and slow
 Some resources are slower than other. We want fast retries to make the fast requests fast when things are slow, but we also
 want the slowest requests to succeed. 
 
 
-## Challenge 10
+## Challenge 11
 By setting a timeout of 10 ms in the k6 test, the requests will be cancelled by the client.
-The Challenge 10 controller is set up as a timebomb, and 5% of the requests will take longer and if they are not cancelled they will exit the web api application and crash the entire service. Therefore, the challenge requires that the API is written in a way such that it will cancel the request and its tasks when the client closes the connection.
+The Challenge 11 controller is set up as a timebomb, and 5% of the requests will take longer and if they are not cancelled they will exit the web api application and crash the entire service. Therefore, the challenge requires that the API is written in a way such that it will cancel the request and its tasks when the client closes the connection.
 
 Try to think of how this timing out based on closed connections can affect an API with respect to issues such as caching slow requests.
 

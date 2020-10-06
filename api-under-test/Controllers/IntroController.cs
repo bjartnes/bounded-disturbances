@@ -16,9 +16,9 @@ namespace api_under_test.Controllers
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<Challenge0Controller> _logger;
+        private readonly ILogger<Challenge1Controller> _logger;
 
-        public IntroController(ILogger<Challenge0Controller> logger)
+        public IntroController(ILogger<Challenge1Controller> logger)
         {
             _logger = logger;
         }

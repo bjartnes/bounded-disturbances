@@ -90,7 +90,7 @@ The watch and test commands runs in different terminal tabs, see the red ring in
 # Dashboards
 The dashboards at http://localhost:3000 (admin/admin), or at the cryptic URL mentioned above if you use Visual Studio Codespace.
 
-  ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/92224841-ac3ccd80-eea2-11ea-900e-bf06db1c2372.png)
+  ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/468796/95165594-9aee2600-07ac-11eb-8742-36a748afb0e3.png)
 
 # Challenges 
 Open the files such as challenge1test.js and read the instructions in the top of the file. 

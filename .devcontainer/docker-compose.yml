@@ -41,8 +41,6 @@ services:
     restart: always
     ports:
       - 8086:8086
-    networks:
-      - monitoring
     environment:
       - INFLUXDB_DB=telegraf
       - INFLUXDB_ADMIN_ENABLED=true

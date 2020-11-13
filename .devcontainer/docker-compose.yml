@@ -5,8 +5,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    networks:
-      - monitoring
     ports: 
       - 5000:5000
       - 5001:5001
@@ -20,8 +18,6 @@ services:
     restart: always 
     ports:
       - 3000:3000
-    networks:
-      - monitoring
     environment:
       # Disable authentication and more or less all security
       # to be able to run it through forwarded ports in VS Online
@@ -37,8 +33,6 @@ services:
     image: telegraf 
     container_name: telegraf 
     restart: always 
-    networks:
-      - monitoring
     volumes:
       - ./../telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro
   influxdb:
@@ -56,5 +50,3 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=admin
       - INFLUXDB_USER=user
       - INFLUXDB_USER_PASSWORD=user
-networks:
-  monitoring:

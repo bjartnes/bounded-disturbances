@@ -31,7 +31,7 @@
         },
         {
             "label": "run k6test",
-            "command": "k6 run --out influxdb=http://influxdb:8086/reportdb k6-tests/challenge${input:testToRun}test.js",
+            "command": "k6 run --out influxdb=http://localhost:8086/reportdb k6-tests/challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
         },
@@ -49,7 +49,7 @@
         },
         {
             "label": "create database",
-            "command": "curl -X POST -G http://influxdb:8086/query --data-urlencode 'q=CREATE DATABASE reportdb'",
+            "command": "curl -X POST -G http://localhost:8086/query --data-urlencode 'q=CREATE DATABASE reportdb'",
             "type": "shell",
             "group": "none"
         },
@@ -62,12 +62,6 @@
         {
             "label": "create dashboards",
             "command": "scripts/create-dashboard.sh",
-            "type": "shell",
-            "group": "none"
-        },
-        {
-            "label": "forward grafana port",
-            "command": "socat tcp-listen:3000,reuseaddr,fork tcp:grafana:3000",
             "type": "shell",
             "group": "none"
         }

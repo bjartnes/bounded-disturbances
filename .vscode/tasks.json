@@ -46,24 +46,6 @@
             "command": "scripts/setup-influx-and-grafana-dashboards.sh",
             "type": "shell",
             "group": "none"
-        },
-        {
-            "label": "create database",
-            "command": "curl -X POST -G http://localhost:8086/query --data-urlencode 'q=CREATE DATABASE reportdb'",
-            "type": "shell",
-            "group": "none"
-        },
-        {
-            "label": "create datasource",
-            "command": "scripts/create-datasource.sh",
-            "type": "shell",
-            "group": "none"
-        },
-        {
-            "label": "create dashboards",
-            "command": "scripts/create-dashboard.sh",
-            "type": "shell",
-            "group": "none"
         }
     ],
       "inputs": [

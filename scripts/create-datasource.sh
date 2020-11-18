@@ -5,7 +5,7 @@ set -o nounset
 
 curl 'http://localhost:3000/api/datasources' \
   -H 'accept: application/json, text/plain, */*' \
-  -H 'Referer: https://grafana:3000' \
+  -H 'Referer: https://localhost:3000' \
   -H 'x-grafana-org-id: 1' \
    -H 'content-type: application/json' \
   --data-binary '{"name":"InfluxDB","type":"influxdb","access":"proxy","isDefault":true}' \

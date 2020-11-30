@@ -18,14 +18,14 @@ export let options = {
   rps       : 250, //max requests per second, increase to go faster
   insecureSkipTLSVerify : true, //ignore that localhost cert doesn't match host.docker.internal
   thresholds: {
-    '200 OK': ['rate>0.99'],
+    '200 OK rate': ['rate>0.99'],
     '200 OK count': ['count>1000'],
     'http_req_duration': ['p(95)<200']
  }
 }
 
 export let TrendRTT = new Trend("RTT");
-const myOkRate = new Rate("200 OK");
+const myOkRate = new Rate("200 OK rate");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {

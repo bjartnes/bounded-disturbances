@@ -26,9 +26,10 @@ On mac, use <kbd>⌘</kbd> instead of <kbd>ctrl</kbd>.
   Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you delete your resources when your are done. 
 
   Create a new codespace, point it to this repo and start. I just just the default machine size, it works fine.
-
+  ![Creating a new codespace](https://user-images.githubusercontent.com/1174441/100577902-7ceefe80-32e1-11eb-8291-c9486675c550.png)
+  
   Once logged in and everything is set up (takes a few minutes) try to
-  <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> the following tasks.
+  <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> the following tasks. (If prompted about errors and task to scan, just select the default "Continue without scanning the output").
 
   * Run Build Task: Run and watch web api
   * Run Task: setup logging and dashboards
@@ -36,10 +37,11 @@ On mac, use <kbd>⌘</kbd> instead of <kbd>ctrl</kbd>.
 
 ## Locally with docker and VS Code 
 (There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Beware of ports that are already in use etc)
+You should not have anything running at port 3000, 5000, 5001, 8086.
 
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
-Install docker. 
+Install docker. On Windows, use the WSL2 backend.
 
 Open VS Code and choose "File" - "Open Folder" (<kbd>CTRL</kbd> <kbd>K</kbd> + <kbd>CTRL</kbd> <kbd>O</kbd>) and select the folder where you cloned the repo. Wait for the popup and choose "Reopen folder to develop in a container".
 
@@ -67,12 +69,9 @@ Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) to run tasks and ru
   
 ![Creating databases and so on](https://user-images.githubusercontent.com/1174441/92223130-4cddbe00-eea0-11ea-80a9-8aa5c7e2d7d1.png)
 
-
 # Starting the API
-
 It should work to use <kbd>CTRL</kbd>+<kbd>SHIFT</kbd> + <kbd>P</kbd> and select "Run Build Task" and then select - "watch" to start the API.
-  Also, the button - I will make screenshots - should work.
-
+ 
 The API will reload once changed and should be exposed at http://localhost:5000/weatherforecast_intro
 
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
@@ -81,9 +80,10 @@ The watch and test commands runs in different terminal tabs, see the red ring in
 <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Dashboards
-The dashboards at http://localhost:3000 (admin/admin), or at the cryptic URL mentioned above if you use Visual Studio Codespace.
+The dashboards at http://localhost:3000 (admin/admin).
 
-  ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/468796/95165594-9aee2600-07ac-11eb-8742-36a748afb0e3.png)
+In Visual Studio Codespaces you must open Grafana through the following:
+  ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/100446763-a45e8500-30af-11eb-974b-19310eefa2a1.png)
 
 # Challenges 
 Open the files such as challenge1test.js and read the instructions in the top of the file. 

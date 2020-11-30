@@ -31,7 +31,7 @@ namespace api_under_test.Controllers
         {
            var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
-                    .InjectionRate(0.05) // 10 % 
+                    .InjectionRate(0.10) // 10 % 
                     .Enabled(true));    // Would probably only turn it on in some environments
             var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
             return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);

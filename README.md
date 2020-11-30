@@ -22,9 +22,9 @@ If you struggle to understand something in this README, I consider it a usabilit
 
 ## In Visual Studio Codespace
 
-  Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you just clean up your resources.
+  Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you delete your resources when your are done. 
 
-  Create a new codespace, point it to this repo and start. I just just the default machine size.
+  Create a new codespace, point it to this repo and start. I just just the default machine size, it works fine.
 
   Once logged in and everything is set up (takes a few minutes) try to
   <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> the following tasks.
@@ -32,14 +32,6 @@ If you struggle to understand something in this README, I consider it a usabilit
   * Run Build Task: Run and watch web api
   * Run Task: setup logging and dashboards
   * Run Test Task: Run k6test (choose Intro for example)
-
-  To see this in grafana in your browser, you need a few more tricks.
-  Run task: forward grafana port
-  Codespaces: Copy port URL (select the 3000 one)
-
-  Paste that long, cryptic url in your browser and you should be able to navigate to the
-  Challenge 1 dashboard (I havent made the other ones yet.)
-
 
 ## Locally with docker and VS Code 
 (There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Beware of ports that are already in use etc)

@@ -80,10 +80,14 @@ The watch and test commands runs in different terminal tabs, see the red ring in
 <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Dashboards
-The dashboards at http://localhost:3000 (admin/admin).
+The dashboards at http://localhost:3000 (admin/admin if you are - you should not be - prompted by anything. Should not require login.).
 
 In Visual Studio Codespaces you must open Grafana through the following:
   ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/100446763-a45e8500-30af-11eb-974b-19310eefa2a1.png)
+
+The dashboards can be tricky to find
+
+![Opening dashboards in Grafana](https://user-images.githubusercontent.com/1174441/100731846-37f3c680-33cc-11eb-9f1d-9c3a91054f91.png)
 
 # Challenges 
 Open the files such as challenge1test.js and read the instructions in the top of the file. 

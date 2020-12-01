@@ -122,9 +122,15 @@ Now, let us see if we can timeout, but not give up. Maybe, if things are actuall
 Remember to compose the policies in the right order, the rightmost argument is the one that happens first (if you draw
 policies as a block diagram, the rightmost policy will be the inner loop of your logic.)
 
+Try to practice formulating a given/when/then structure.
+
 ## Challenge 4 - Timeouts and errors
 Now we are getting closer to real life scenarios. We can have both exceptions and slow responses. 
 Simmy can simulate both these. In this case, we require quite high correctness, even if our service could be failing quite a lot.  
+
+Try to practice formulating a given/when/then structure.
+
+What happens if you increase the latency of GetForecasts? How robust is our new strategy to changes in the system? What drove it to this?
 
 ## Challenge 5 
 In .NET when we do timeouts we do that through cancellation. There are a few ways for a framework to start and stop something that should be cancelled. What we call optimistic timeout relies on using co-operative timeout, which means passing a cancellationtoken around. If that cancellationtoken requests a cancellation, then tasks should abort what they are doing. The alternative, pessimistic timeout, is not something we will dig into in this workshop but you can read about it here https://github.com/App-vNext/Polly/wiki/Timeout#pessimistic-timeout.

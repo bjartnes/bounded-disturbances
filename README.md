@@ -15,6 +15,8 @@ described here https://code.visualstudio.com/docs/remote/containers.
 It also runs online at https://online.visualstudio.com/ which is the easiest way to set things up. 
   
 For an intro to Polly - which could be a nice background - I would recommend watching  https://www.youtube.com/watch?v=2kfCXMoVCqM and perhaps code-along with the examples here https://github.com/App-vNext/Polly-Samples/
+
+For a background on why we have been working on this in NRK see https://aka.ms/cloudstories-3
   
 # How to run
 

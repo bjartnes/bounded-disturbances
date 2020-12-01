@@ -115,6 +115,8 @@ In this challenge we introduce latency of 1 second in 10% of the requests.
 We have a requirement to be faster than than 200 ms in the 95th percentile.
 The correctness requirements are not so hard to meet.
 
+Try to practice formulating a given/when/then structure as above.
+
 ## Challenge 3 - Timeouts, and not giving up
 Now, let us see if we can timeout, but not give up. Maybe, if things are actually just flaky we can try again.
 Remember to compose the policies in the right order, the rightmost argument is the one that happens first (if you draw

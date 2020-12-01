@@ -80,10 +80,14 @@ The watch and test commands runs in different terminal tabs, see the red ring in
 <kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> and "Run Test Task" - "k6 test", then select the number of the test you want to run. This should run the loadtest. They will take approximately 10 seconds to run. 
 
 # Dashboards
-The dashboards at http://localhost:3000 (admin/admin).
+The dashboards at http://localhost:3000 (admin/admin if you are - you should not be - prompted by anything. Should not require login.).
 
 In Visual Studio Codespaces you must open Grafana through the following:
   ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/100446763-a45e8500-30af-11eb-974b-19310eefa2a1.png)
+
+The dashboards can be tricky to find
+
+![Opening dashboards in Grafana](https://user-images.githubusercontent.com/1174441/100731846-37f3c680-33cc-11eb-9f1d-9c3a91054f91.png)
 
 # Challenges 
 Open the files such as challenge1test.js and read the instructions in the top of the file. 
@@ -103,19 +107,34 @@ We introduce 15% socket errors using Simmy. Try changing the number of retries w
 See if you can make the test green. Pay attention to the rate of 200 OK graph. 
 Can you do the math by paper? Can you reach 100%? Does failures in this case change the performance of the API?
 
+Can you fullfill the requirement:
+- **Given** that 15% of a method internal in the API fails with socket exception
+- **When** we load test the API with 250 rps for 10 secondss
+- **Then**: we expect
+  - the failure rate of the API to be less than 99%
+  - the latency of the 95th percentile to be less than 200 ms
+
 ## Challenge 2 - Timeouts
 In this challenge we introduce latency of 1 second in 10% of the requests.  
 We have a requirement to be faster than than 200 ms in the 95th percentile.
 The correctness requirements are not so hard to meet.
+
+Try to practice formulating a given/when/then structure as above.
 
 ## Challenge 3 - Timeouts, and not giving up
 Now, let us see if we can timeout, but not give up. Maybe, if things are actually just flaky we can try again.
 Remember to compose the policies in the right order, the rightmost argument is the one that happens first (if you draw
 policies as a block diagram, the rightmost policy will be the inner loop of your logic.)
 
+Try to practice formulating a given/when/then structure.
+
 ## Challenge 4 - Timeouts and errors
 Now we are getting closer to real life scenarios. We can have both exceptions and slow responses. 
 Simmy can simulate both these. In this case, we require quite high correctness, even if our service could be failing quite a lot.  
+
+Try to practice formulating a given/when/then structure.
+
+What happens if you increase the latency of GetForecasts? How robust is our new strategy to changes in the system? What drove it to this?
 
 ## Challenge 5 
 In .NET when we do timeouts we do that through cancellation. There are a few ways for a framework to start and stop something that should be cancelled. What we call optimistic timeout relies on using co-operative timeout, which means passing a cancellationtoken around. If that cancellationtoken requests a cancellation, then tasks should abort what they are doing. The alternative, pessimistic timeout, is not something we will dig into in this workshop but you can read about it here https://github.com/App-vNext/Polly/wiki/Timeout#pessimistic-timeout.

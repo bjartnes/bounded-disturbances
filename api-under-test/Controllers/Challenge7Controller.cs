@@ -38,7 +38,7 @@ namespace api_under_test.Controllers
         {
             var policy = GetPolicy();
             // these lines might need to be moved around
-            var url = new Uri(@"https://localhost:5001/weatherforecast_challenge1");
+            var url = new Uri(@"http://localhost:5000/weatherforecast_challenge1");
             var msg = new HttpRequestMessage(HttpMethod.Get, url); 
             // to somewhere... and the GetForecasts signature got to loose its message
             return await policy.ExecuteAsync(() => GetForecasts(msg)); 

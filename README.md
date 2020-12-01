@@ -105,7 +105,7 @@ Can you do the math by paper? Can you reach 100%? Does failures in this case cha
 
 Can you fullfill the requirement:
 - **Given** that 15% of a method internal in the API fails with socket exception
-- **When** we load test the API with 250 rps for 10 seconds
+- **When** we load test the API with 250 rps for 10 secondss
 - **Then**: we expect
   - the failure rate of the API to be less than 99%
   - the latency of the 95th percentile to be less than 200 ms

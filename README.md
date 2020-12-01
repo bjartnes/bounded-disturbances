@@ -103,6 +103,13 @@ We introduce 15% socket errors using Simmy. Try changing the number of retries w
 See if you can make the test green. Pay attention to the rate of 200 OK graph. 
 Can you do the math by paper? Can you reach 100%? Does failures in this case change the performance of the API?
 
+Can you fullfill the requirement:
+- **Given** that 15% of a method internal in the API fails with socket exception
+- **When** we load test the API with 250 rps for 10 seconds
+- **Then**: we expect
+  - the failure rate of the API to be less than 99%
+  - the latency of the 95th percentile to be less than 200 ms
+
 ## Challenge 2 - Timeouts
 In this challenge we introduce latency of 1 second in 10% of the requests.  
 We have a requirement to be faster than than 200 ms in the 95th percentile.

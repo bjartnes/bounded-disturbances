@@ -37,7 +37,7 @@ services:
       - ./../telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro
   influxdb:
     image: influxdb
-    container_name: influxdb
+    container_name: "influxdb:1.8.4"
     restart: always
     ports:
       - 8086:8086

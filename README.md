@@ -12,8 +12,6 @@ In the workshop we use https://github.com/App-vNext/Polly for resilience-mechani
 This runs on dotnet core in VS Code and should work on Windows/Linux/Mac, but it requires Docker to work properly set up like
 described here https://code.visualstudio.com/docs/remote/containers.
 
-It also runs online at https://online.visualstudio.com/ which is the easiest way to set things up. 
-  
 For an intro to Polly - which could be a nice background - I would recommend watching  https://www.youtube.com/watch?v=2kfCXMoVCqM and perhaps code-along with the examples here https://github.com/App-vNext/Polly-Samples/
 
 For a background on why we have been working on this in NRK see https://aka.ms/cloudstories-3
@@ -23,21 +21,6 @@ For a background on why we have been working on this in NRK see https://aka.ms/c
 If you struggle to understand something in this README, I consider it a usability bug, so please submit a github issue, ping me on twitter or something. 
 On mac, use <kbd>⌘</kbd> instead of <kbd>ctrl</kbd>.
 
-## In Visual Studio Codespace
-
-  Go to https://online.visualstudio.com/, create an account etc. The first month is free, but you need a credit card. If you have used your month, you must pay, but it is cheap if you delete your resources when your are done. 
-
-  Create a new codespace, point it to this repo and start. I just just the default machine size, it works fine.
-  ![Creating a new codespace](https://user-images.githubusercontent.com/1174441/100577902-7ceefe80-32e1-11eb-8291-c9486675c550.png)
-  
-  Once logged in and everything is set up (takes a few minutes) try to
-  <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> the following tasks. (If prompted about errors and task to scan, just select the default "Continue without scanning the output").
-
-  * Run Build Task: Run and watch web api
-  * Run Task: setup logging and dashboards
-  * Run Test Task: Run k6test (choose Intro for example)
-
-## Locally with docker and VS Code 
 (There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Beware of ports that are already in use etc)
 You should not have anything running at port 3000, 5000, 5001, 8086.
 
@@ -84,11 +67,7 @@ The watch and test commands runs in different terminal tabs, see the red ring in
 # Dashboards
 The dashboards at http://localhost:3000 (admin/admin if you are - you should not be - prompted by anything. Should not require login.).
 
-In Visual Studio Codespaces you must open Grafana through the following:
-  ![Accessing Grafana dashboards](https://user-images.githubusercontent.com/1174441/100446763-a45e8500-30af-11eb-974b-19310eefa2a1.png)
-
 The dashboards can be tricky to find
-
 ![Opening dashboards in Grafana](https://user-images.githubusercontent.com/1174441/100731846-37f3c680-33cc-11eb-9f1d-9c3a91054f91.png)
 
 # Challenges 

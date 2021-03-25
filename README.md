@@ -5,9 +5,11 @@ By bounded disturbance I mean an error in a dependency such as less than 1% sock
 Under these bounded disturbances on our dependencies we still want to maintain stricter SLOs to our consumers, such as less than 0.01% errors 
 and a 99% response time of less than 150 milliseconds.
 
-The bounded-disturbance term is borrowed from control theory and more specifically robust control. It is probably covering excactly the same as chaos engineering, but I prefer it as it deals less with chaos and more with designing a system with a fixed set of parameters (timeouts, retries etc) that perform within a given set of constraints when the system performs different from its normal/design conditions. So rather than talking about chaos, we will talk about how robust the system is when a dependency that normally responds within 10 milliseconds responds in 10 seconds for 1% of its requests.
+The bounded-disturbance term is borrowed from control theory and more specifically robust control. 
+It is probably covering a lot of chaos engineering principles, but only a subset of it.
+In its current form it deals less with the entire field of chaos engineering and more with designing a system with a fixed set of parameters (timeouts, retries etc) that perform within a given set of constraints when the system performs different from its normal/design conditions. 
 
-In the workshop we use https://github.com/App-vNext/Polly for resilience-mechanisms and https://github.com/Polly-Contrib/Simmy as a chaos-monkey to introduce our disturbances. For load testing we use k6 (https://k6.io/). For visualization we report to InfluxDB and present the data in Grafa. 
+In the workshop we use https://github.com/App-vNext/Polly for resilience-mechanisms and https://github.com/Polly-Contrib/Simmy as a monkey to introduce our disturbances. For load testing we use k6 (https://k6.io/). For visualization we report to InfluxDB and present the data in Grafa. 
 
 This runs on dotnet core in VS Code and should work on Windows/Linux/Mac, but it requires Docker to work properly set up like
 described here https://code.visualstudio.com/docs/remote/containers.

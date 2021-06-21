@@ -6,9 +6,9 @@ services:
       context: .
       dockerfile: Dockerfile
     ports: 
-      - 5000:5000
-      - 5001:5001
-      - 1234:1234
+      - "5000:5000"
+      - "5001:5001"
+      - "1234:1234"
     command: /bin/sh -c "while sleep 1000; do :; done"  
     volumes:
       - ../:/workspace:cached
@@ -17,7 +17,7 @@ services:
     container_name: grafana
     restart: always 
     ports:
-      - 3000:3000
+      - "3000:3000"
     environment:
       # Disable authentication and more or less all security
       # to be able to run it through forwarded ports in VS Online
@@ -40,7 +40,7 @@ services:
     container_name: influxdb 
     restart: always
     ports:
-      - 8086:8086
+      - "8086:8086"
     environment:
       - INFLUXDB_DB=telegraf
       - INFLUXDB_ADMIN_ENABLED=true
@@ -48,3 +48,16 @@ services:
       - INFLUXDB_ADMIN_PASSWORD=admin
       - INFLUXDB_USER=user
       - INFLUXDB_USER_PASSWORD=user
+  jaeger:
+    image: jaegertracing/all-in-one:1.23
+    container_name: jaeger
+    restart: always
+    ports:
+        - "5775:5775/udp"
+        - "6831:6831/udp"
+        - "6832:6832/udp"
+        - "5778:5778"
+        - "16686:16686"
+        - "14268:14268"
+        - "14250:14250"
+        - "9411:9411"

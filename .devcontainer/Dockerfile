@@ -18,6 +18,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV DOTNET_USE_POLLING_FILE_WATCHER=1
 
+
+
 # Configure apt and install packages
 RUN apt-get update \
     && apt-get -y install --no-install-recommends apt-utils dialog 2>&1 \
@@ -34,8 +36,8 @@ RUN apt-get update \
     && chmod 0440 /etc/sudoers.d/$USERNAME \
     #
 
-    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61 \
-    && echo "deb https://dl.bintray.com/loadimpact/deb stable main" | tee -a /etc/apt/sources.list \
+    && apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69 \
+    && echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list \
     && apt-get -y update \ 
     && apt-get -y install k6 \
     && apt-get -y install jq \

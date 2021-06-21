@@ -50,6 +50,8 @@ services:
       - INFLUXDB_USER_PASSWORD=user
   jaeger:
     image: jaegertracing/all-in-one:1.23
+    environment: 
+      - JAEGER_DISABLED=true
     container_name: jaeger
     restart: always
     ports:

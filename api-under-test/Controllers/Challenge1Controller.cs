@@ -8,6 +8,7 @@ using Polly;
 using Polly.Contrib.Simmy;
 using Polly.Contrib.Simmy.Outcomes;
 using System.Threading;
+using OpenTracing;
 
 namespace api_under_test.Controllers
 {
@@ -21,23 +22,30 @@ namespace api_under_test.Controllers
         };
 
         private readonly ILogger<Challenge1Controller> _logger;
+        private readonly ITracer _tracer;
 
-        public Challenge1Controller(ILogger<Challenge1Controller> logger)
+        public Challenge1Controller(ILogger<Challenge1Controller> logger,
+                                    ITracer tracer)
         {
             _logger = logger;
+            _tracer = tracer;
         }
 
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
-            Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
+            var actionName = ControllerContext.ActionDescriptor.DisplayName;
+            Console.WriteLine(_tracer);
+            using (var scope = _tracer.BuildSpan(actionName).StartActive(true)) {
+                Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
 
-            var chaosPolicy = MonkeyPolicy.InjectExceptionAsync(with 
-            => with.Fault(fault)
-                   .InjectionRate(0.15)
-                   .Enabled(true));
-            var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
-            return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
+                var chaosPolicy = MonkeyPolicy.InjectExceptionAsync(with 
+                => with.Fault(fault)
+                    .InjectionRate(0.15)
+                    .Enabled(true));
+                var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
+                return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
+            }
         }
 
         private IAsyncPolicy GetPolicy() {

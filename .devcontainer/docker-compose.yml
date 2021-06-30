@@ -76,9 +76,9 @@ services:
     command: npm run start
     healthcheck:
       test: ["CMD", "nc",  "-z", "172.17.0.1", "5432"]
-      interval: 1s
-      timeout: 1m
-      retries: 5
+      interval: 5s
+      timeout: 30s 
+      retries: 15
       start_period: 15s
   unleashdb:
     ports:

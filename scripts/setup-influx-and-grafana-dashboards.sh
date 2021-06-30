@@ -7,3 +7,4 @@ curl -X POST -G http://172.17.0.1:8086/query --data-urlencode 'q=CREATE DATABASE
 
 ./scripts/create-datasource.sh
 ./scripts/create-dashboard.sh
+./scripts/setup-unleash.sh

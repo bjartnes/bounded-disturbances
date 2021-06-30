@@ -63,8 +63,7 @@ namespace api_under_test
                         options.OperationNameResolver =
                         request => $"{request.Method.Method}: {request?.RequestUri?.AbsoluteUri}");
 
-            var unleashSecret = "ee25449d8edec0cf218cc68b484f4cfa72ca0f8db4b913fe62784bbdeb59a255";
-
+            var unleashSecret = Configuration["UnleashToken"]!.Replace("\"", "");
             var unleashSettings = new UnleashSettings
             {
                 AppName = "api-under-test",
@@ -84,8 +83,6 @@ namespace api_under_test
             {
                 app.UseDeveloperExceptionPage();
             }
-
-//            app.UseHttpsRedirection();
 
             app.UseRouting();
 

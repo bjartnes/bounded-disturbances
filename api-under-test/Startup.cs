@@ -18,6 +18,7 @@ using Jaeger.Senders.Thrift;
 using OpenTracing.Contrib.NetCore.Configuration;
 using Jaeger.Senders;
 using OpenTracing.Util;
+using Unleash;
 
 namespace api_under_test
 {
@@ -62,6 +63,18 @@ namespace api_under_test
                         options.OperationNameResolver =
                         request => $"{request.Method.Method}: {request?.RequestUri?.AbsoluteUri}");
 
+            var unleashSecret = "ee25449d8edec0cf218cc68b484f4cfa72ca0f8db4b913fe62784bbdeb59a255";
+
+            var unleashSettings = new UnleashSettings
+            {
+                AppName = "api-under-test",
+                InstanceTag = Environment.MachineName,
+                SendMetricsInterval = TimeSpan.FromMinutes(1),
+                UnleashApi = new Uri("http://172.17.0.1:4242/api/"),
+                CustomHttpHeaders = new Dictionary<string, string> {{"Authorization", unleashSecret}}
+            };
+
+            services.AddSingleton<IUnleash>(ctx => new DefaultUnleash(unleashSettings));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

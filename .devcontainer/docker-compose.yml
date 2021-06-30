@@ -70,6 +70,7 @@ services:
     environment:
       DATABASE_URL: "postgres://unleash_db_user:unleash@172.17.0.1:5432/unleashdb"
       DATABASE_SSL: "false"
+      UNLEASH_URL: "http://localhost:4242"
     depends_on:
       - unleashdb
     command: npm run start

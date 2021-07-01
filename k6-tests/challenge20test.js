@@ -28,7 +28,7 @@ export let options = {
 export default function() {
   const http = new Http({
     exporter: "jaeger",
-    propagator: "w3c",
+    propagator: "jaeger",
     endpoint: "http://172.17.0.1:14268/api/traces"
   });
  

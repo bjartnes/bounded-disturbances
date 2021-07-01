@@ -31,7 +31,7 @@
         },
         {
             "label": "run k6test",
-            "command": "k6 run --out influxdb=http://172.17.0.1:8086/reportdb k6-tests/challenge${input:testToRun}test.js",
+            "command": "/workspace/scripts/k6 run --out influxdb=http://172.17.0.1:8086/reportdb k6-tests/challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
         },
@@ -65,7 +65,8 @@
             "8",
             "9",
             "10",
-            "11"
+            "11",
+            "20"
         ],
         "default": "intro"
         }

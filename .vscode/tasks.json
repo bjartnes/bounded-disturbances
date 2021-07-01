@@ -19,7 +19,8 @@
             "type": "shell",
             "group": "build",
             "problemMatcher": "$msCompile"
-        }, {
+        },
+        {
             "label": "run web api",
             "command": "dotnet run --project api-under-test/api-under-test.csproj",
             "type": "shell",
@@ -31,7 +32,7 @@
         },
         {
             "label": "run k6test",
-            "command": "/workspace/scripts/k6 run --out influxdb=http://172.17.0.1:8086/reportdb k6-tests/challenge${input:testToRun}test.js",
+            "command": "k6 run --out influxdb=http://172.17.0.1:8086/reportdb k6-tests/challenge${input:testToRun}test.js",
             "type": "shell",
             "group": "test",
         },
@@ -48,27 +49,27 @@
             "group": "none"
         }
     ],
-      "inputs": [
+    "inputs": [
         {
-        "type": "pickString",
-        "id": "testToRun",
-        "description": "Which test do you want to run?",
-        "options": [
-            "intro",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "6",
-            "7",
-            "8",
-            "9",
-            "10",
-            "11",
-            "20"
-        ],
-        "default": "intro"
+            "type": "pickString",
+            "id": "testToRun",
+            "description": "Which test do you want to run?",
+            "options": [
+                "intro",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5",
+                "6",
+                "7",
+                "8",
+                "9",
+                "10",
+                "11",
+                "20"
+            ],
+            "default": "intro"
         }
     ]
 }

@@ -6,5 +6,5 @@ export PATH=$PATH:/usr/local/go/bin
 go version
 
 go install github.com/k6io/xk6/cmd/xk6@latest
-~/go/bin/xk6 build --with github.com/k6io/xk6-distributed-tracing@latest
+~/go/bin/xk6 build --with github.com/k6io/xk6-distributed-tracing@latest --output /usr/bin/k6
 export PATH=$PATH:~/go/bin

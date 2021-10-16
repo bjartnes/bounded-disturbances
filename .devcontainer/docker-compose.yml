@@ -76,10 +76,10 @@ services:
       POSTGRES_HOST_AUTH_METHOD: "trust"
     healthcheck:
       test: ["CMD", "pg_isready", "--username=unleash_db_user", "--password=unleash", "--host=172.17.0.1", "--port=5432"]
-      interval: 2s
+      interval: 15s
       timeout: 1m
       retries: 5
-      start_period: 10s
+      start_period: 30s
   unleashweb:
     build: Unleash 
     ports:
@@ -93,7 +93,7 @@ services:
     command: npm run start
     healthcheck:
       test: ["CMD", "nc",  "-z", "172.17.0.1", "5432"]
-      interval: 5s
+      interval: 15s
       timeout: 30s 
       retries: 15
       start_period: 25s

@@ -63,23 +63,6 @@ services:
         - "14268:14268"
         - "14250:14250"
         - "9411:9411"
-  unleashweb:
-    build: Unleash 
-    ports:
-      - "4242:4242"
-    environment:
-      DATABASE_URL: "postgres://unleash_db_user:unleash@172.17.0.1:5432/unleashdb"
-      DATABASE_SSL: "false"
-      UNLEASH_URL: "http://localhost:4242"
-    depends_on:
-      - unleashdb
-    command: npm run start
-    healthcheck:
-      test: ["CMD", "nc",  "-z", "172.17.0.1", "5432"]
-      interval: 5s
-      timeout: 30s 
-      retries: 15
-      start_period: 15s
   unleashdb:
     ports:
       - "5432:5432"
@@ -97,3 +80,20 @@ services:
       timeout: 1m
       retries: 5
       start_period: 10s
+  unleashweb:
+    build: Unleash 
+    ports:
+      - "4242:4242"
+    environment:
+      DATABASE_URL: "postgres://unleash_db_user:unleash@172.17.0.1:5432/unleashdb"
+      DATABASE_SSL: "false"
+      UNLEASH_URL: "http://localhost:4242"
+    depends_on:
+      - unleashdb
+    command: npm run start
+    healthcheck:
+      test: ["CMD", "nc",  "-z", "172.17.0.1", "5432"]
+      interval: 5s
+      timeout: 30s 
+      retries: 15
+      start_period: 25s

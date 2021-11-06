@@ -13,7 +13,7 @@ export let options = {
   thresholds: {
     '200 OK rate': ['rate>0.99'],
     '200 OK count': ['count>2000'],
-    'http_req_duration': ['p(95)<10']
+    'http_req_duration': ['p(99)<1']
  }
 }
 
@@ -28,7 +28,7 @@ let params = {
 
 export default function() {
     
-  let res = http.get("http://localhost:5000/weatherforecast_challenge3", params);
+  let res = http.get("http://localhost:5010/weatherforecast_challenge3", params);
   TrendRTT.add(res.timings.duration);
   let resOk = res.status === 200;
   myOkRate.add(resOk);

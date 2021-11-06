@@ -40,6 +40,7 @@ RUN apt-get update \
     && echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6.list \
     && apt-get -y update \ 
     && apt-get -y install k6 \
+    && apt-get -y install nginx \
     && apt-get -y install jq \
     && apt-get -y install socat \
     # Clean up

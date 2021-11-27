@@ -42,9 +42,10 @@ export default function() {
   // mkdir /cache
   // chmod 777 /cache
   // code /etc/nginx/sites-enabled
-  // add proxy_cache_path /path/to/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
-  // modify     location / { proxy_cache my_cache; proxy_pass http://my_upstream; 
+  // add proxy_cache_path /cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
+  // modify     location / { proxy_cache my_cache; proxy_pass http://172.17.0.1:5000; 
   // Response.Headers.Add("Cache-Control", "public, max-age=500");
   // need to create /cache dir and chmod it to read and write
   // files are in /etc/nginx/sites-enabled
+ // sudo service start nginx
   // see how many errors we can not-handle and still make this run...

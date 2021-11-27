@@ -29,9 +29,6 @@ let params = {
 export default function() {
     
   //https://www.nginx.com/blog/nginx-caching-guide/
-  // need to create /cache dir and chmod it to read and write
-  // files are in /etc/ngin/sites-enabled
-  // see how many errors we can not-handle and still make this run...
   let res = http.get("http://localhost:80/weatherforecast_challenge3", params);
   TrendRTT.add(res.timings.duration);
   let resOk = res.status === 200;
@@ -39,3 +36,15 @@ export default function() {
   myOkCounter.add(resOk); 
   
 };
+
+
+// Cheat code
+  // mkdir /cache
+  // chmod 777 /cache
+  // code /etc/nginx/sites-enabled
+  // add proxy_cache_path /path/to/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
+  // modify     location / { proxy_cache my_cache; proxy_pass http://my_upstream; 
+  // Response.Headers.Add("Cache-Control", "public, max-age=500");
+  // need to create /cache dir and chmod it to read and write
+  // files are in /etc/nginx/sites-enabled
+  // see how many errors we can not-handle and still make this run...

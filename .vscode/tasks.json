@@ -46,6 +46,12 @@
             "command": "scripts/setup-influx-and-grafana-dashboards.sh",
             "type": "shell",
             "group": "none"
+        },
+        {
+            "label": "send waitstat stats to influx",
+            "command": "scripts/sendConnections.sh",
+            "type": "shell",
+            "group": "none"
         }
     ],
       "inputs": [

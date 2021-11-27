@@ -12,30 +12,34 @@ using System.Threading;
 using OpenTracing;
 using Unleash;
 using System.Net.Http;
+using IHttpClientFactory = System.Net.Http.IHttpClientFactory;
 
 namespace api_under_test.Controllers
 {
     [ApiController]
-    [Route("weatherforecast_challenge20")]
-    public class Challenge20Controller: ControllerBase
+    [Route("weatherforecast_challenge21")]
+    public class Challenge21Controller: ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
-        private readonly ILogger<Challenge1Controller> _logger;
+        private readonly ILogger<Challenge21Controller> _logger;
         private readonly ITracer _tracer;
         private readonly IUnleash _unleash;
+		private readonly IHttpClientFactory _clientFactory;
 
-        public Challenge20Controller(ILogger<Challenge1Controller> logger,
+		public Challenge21Controller(ILogger<Challenge21Controller> logger,
                                     ITracer tracer,
-                                    IUnleash unleash)
+                                    IUnleash unleash,
+				                    IHttpClientFactory clientFactory)
         {
             _logger = logger;
             _tracer = tracer;
             _unleash = unleash;
-        }
+			_clientFactory = clientFactory;
+		}
 
         [HttpGet]
         public async Task<string> Get()
@@ -58,26 +62,19 @@ namespace api_under_test.Controllers
             Program.ConfiguredRetries.Publish();
             var policy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
 
-            // to here, anything outside of that is cheating.
-            // But cheating is encouraged as long as the rationale and code
-            // is shared with the workshop :)
-            // Also, if you cheat or add something fun, consider making a PR for a new 
-            // challenge to the workshop!
-            return policy; 
+           return policy; 
         }
-        private static Random random = new Random();
-
-        public static string RandomString(int length)
+        private async Task<string> GetForecasts(CancellationToken ct)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            return new string(Enumerable.Repeat(chars, length)
-                .Select(s => s[random.Next(s.Length)]).ToArray());
-        }
-
-        private Task<string> GetForecasts(CancellationToken ct)
-        {
-            var fooToggle = _unleash.IsEnabled("foo");
-            return fooToggle ? Task.FromResult(RandomString(43000)): Task.FromResult(RandomString(42000));
+            // https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#httpclient-lifetimes
+            var useHttpClientFactory = _unleash.IsEnabled("useHttpClientFactory");
+            if (useHttpClientFactory) {
+                var client = _clientFactory.CreateClient(); 
+                return await client.GetStringAsync("http://172.17.0.1:5000/weatherforecast_intro");
+            } else {
+                using var client = new HttpClient(); 
+                return await client.GetStringAsync("http://172.17.0.1:5000/weatherforecast_intro");
+            }
         }
     }
 }

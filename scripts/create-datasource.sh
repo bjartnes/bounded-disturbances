@@ -2,6 +2,7 @@
 set -o errexit
 set -o pipefail
 set -o nounset
+# TODO MIGHT NEED TO ADD DATABASE REPORTDB IN THE LATEST VERSION
 curl 'http://172.17.0.1:3000/api/datasources' \
   -H 'accept: application/json, text/plain, */*' \
   -H 'Referer: https://172.17.0.1:3000' \

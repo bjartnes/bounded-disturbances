@@ -34,6 +34,7 @@ namespace api_under_test
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHttpClient();
             services.AddControllers();
             //https://thecloudblog.net/post/distributed-tracing-in-asp.net-core-with-jaeger-and-tye-part-1-distributed-tracing/
             services.AddOpenTracing();
@@ -68,7 +69,8 @@ namespace api_under_test
             {
                 AppName = "api-under-test",
                 InstanceTag = Environment.MachineName,
-                SendMetricsInterval = TimeSpan.FromMinutes(1),
+                FetchTogglesInterval = TimeSpan.FromSeconds(1),
+                SendMetricsInterval = TimeSpan.FromSeconds(5),
                 UnleashApi = new Uri("http://172.17.0.1:4242/api/"),
                 CustomHttpHeaders = new Dictionary<string, string> {{"Authorization", unleashSecret}}
             };

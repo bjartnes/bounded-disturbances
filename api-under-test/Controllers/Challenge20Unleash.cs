@@ -57,12 +57,6 @@ namespace api_under_test.Controllers
             Program.ConfiguredRetries.Set(retries);
             Program.ConfiguredRetries.Publish();
             var policy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
-
-            // to here, anything outside of that is cheating.
-            // But cheating is encouraged as long as the rationale and code
-            // is shared with the workshop :)
-            // Also, if you cheat or add something fun, consider making a PR for a new 
-            // challenge to the workshop!
             return policy; 
         }
         private static Random random = new Random();

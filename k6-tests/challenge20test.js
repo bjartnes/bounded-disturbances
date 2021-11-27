@@ -25,6 +25,11 @@ let params = {
   timeout: 20000 //ms
 }
 
+// The idea in this challenge is to try to explain what happens with GC
+// We need to set up a chart of GC0, 1 and 2 in Grafana
+// and then a feature toggle
+// Then we can run some experiments and disucss
+
 export default function() {
     
   let res = http.get("http://172.17.0.1:5000/weatherforecast_challenge20", params);

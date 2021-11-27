@@ -28,10 +28,14 @@ let params = {
 
 export default function() {
     
-  let res = http.get("http://localhost:5010/weatherforecast_challenge3", params);
+  //https://www.nginx.com/blog/nginx-caching-guide/
+  // need to create /cache dir and chmod it to read and write
+  // files are in /etc/ngin/sites-enabled
+  // see how many errors we can not-handle and still make this run...
+  let res = http.get("http://localhost:80/weatherforecast_challenge3", params);
   TrendRTT.add(res.timings.duration);
   let resOk = res.status === 200;
   myOkRate.add(resOk);
-  myOkCounter.add(resOk);
+  myOkCounter.add(resOk); 
   
 };

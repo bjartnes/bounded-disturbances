@@ -35,7 +35,6 @@ namespace api_under_test.Controllers
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
             var actionName = ControllerContext.ActionDescriptor.DisplayName;
-            Console.WriteLine(_tracer);
             using (var scope = _tracer.BuildSpan(actionName).StartActive(true)) {
                 Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
 

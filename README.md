@@ -50,10 +50,10 @@ Depending on versions of docker and WSL you might have to share the repo in Dock
 Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to find the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue without scanning the task output")
 ![Continue without scanning the task output](https://user-images.githubusercontent.com/1174441/92082006-40843300-edc4-11ea-893e-64a880408def.png)
 
-  * Run Build Task: Run and watch web api
-  * Run Task: setup logging and dashboards
-  * Run Test Task: Run k6test (choose Intro for example)
-  
+1. Run Task: setup logging and dashboards
+2. Run Build Task: Run and watch web api
+3. Run Test Task: Run k6test (choose Intro for example)
+
 ![Creating databases and so on](https://user-images.githubusercontent.com/1174441/92223130-4cddbe00-eea0-11ea-80a9-8aa5c7e2d7d1.png)
 
 # Starting the API

@@ -34,8 +34,8 @@ Open VS Code and choose "File" - "Open Folder" (<kbd>CTRL</kbd> <kbd>K</kbd> + <
 
 ![Reopen folder to develop in a container](https://user-images.githubusercontent.com/1174441/92221305-9082f880-ee9d-11ea-8e31-28dd9729b110.png)
 
-You will get a lot of these ![install  extension](https://user-images.githubusercontent.com/1174441/82751431-85590080-9db7-11ea-8a6a-7728a0a1c877.png) 
-asking you to install extensions, and then asked to relead the folder in the Docker images and just go yes, yes, sure, reload etc. And wait when it asks you too, downloading and building all the images can take a while the first time.
+You will get a lot of these ![install  extension](https://user-images.githubusercontent.com/1174441/82751431-85590080-9db7-11ea-8a6a-7728a0a1c877.png)
+asking you to install extensions, and then asked to reload the folder in the Docker images and just go yes, yes, sure, reload etc. And wait when it asks you to, downloading and building all the images can take a while the first time.
 
 If the docker images for some reason does not build and open automatically hit ctrl+shift+p and type "remote-containers Open work" - or enough for the autocomplete to find the following task: 
 
@@ -47,7 +47,7 @@ Depending on versions of docker and WSL you might have to share the repo in Dock
 
 ## Setting up dashboards and datasources
 
-Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to fint the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue wihtout scanning the task output")
+Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) to run tasks and run the following tasks. (If you can not find the task, try to type "build" for examle to find the "Run Build Task", hit enter then search for "run and watch". If prompted by anything just hit "Continue without scanning the task output")
 ![Continue without scanning the task output](https://user-images.githubusercontent.com/1174441/92082006-40843300-edc4-11ea-893e-64a880408def.png)
 
   * Run Build Task: Run and watch web api

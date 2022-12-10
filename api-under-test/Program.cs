@@ -52,6 +52,5 @@ namespace api_under_test
             GC1.Set(GC.CollectionCount(1));
             GC2.Set(GC.CollectionCount(2));
         }
-
     }
 }

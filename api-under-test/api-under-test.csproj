@@ -6,12 +6,9 @@
     <UserSecretsId>6398648b-86d3-43d3-80b1-d0e6f9501819</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="jaeger" Version="1.0.2" />
-    <PackageReference Include="OpenTracing.Contrib.Netcore" Version="0.7.1" />
     <PackageReference Include="Polly" Version="7.2.0" />
     <PackageReference Include="Polly.Contrib.Simmy" Version="0.3.0" />
     <PackageReference Include="prometheus-net.AspNetCore" Version="3.5.0" />
     <PackageReference Include="prometheus-net.DotNetRuntime" Version="3.3.1" />
-    <PackageReference Include="Unleash.Client" Version="1.6.1" />
   </ItemGroup>
 </Project>

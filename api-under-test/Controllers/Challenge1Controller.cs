@@ -8,71 +8,66 @@ using Polly;
 using Polly.Contrib.Simmy;
 using Polly.Contrib.Simmy.Outcomes;
 using System.Threading;
-using OpenTracing;
 
 namespace api_under_test.Controllers
 {
-    [ApiController]
-    [Route("weatherforecast_challenge1")]
-    public class Challenge1Controller: ControllerBase
-    {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+	[ApiController]
+	[Route("weatherforecast_challenge1")]
+	public class Challenge1Controller : ControllerBase
+	{
+		private static readonly string[] Summaries = new[]
+		{
+	    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+	};
 
-        private readonly ILogger<Challenge1Controller> _logger;
-        private readonly ITracer _tracer;
+		private readonly ILogger<Challenge1Controller> _logger;
 
-        public Challenge1Controller(ILogger<Challenge1Controller> logger,
-                                    ITracer tracer)
-        {
-            _logger = logger;
-            _tracer = tracer;
-        }
+		public Challenge1Controller(ILogger<Challenge1Controller> logger)
+		{
+			_logger = logger;
+		}
 
-        [HttpGet]
-        public async Task<IEnumerable<WeatherForecast>> Get()
-        {
-            var actionName = ControllerContext.ActionDescriptor.DisplayName;
-            using (var scope = _tracer.BuildSpan(actionName).StartActive(true)) {
-                Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
+		[HttpGet]
+		public async Task<IEnumerable<WeatherForecast>> Get()
+		{
+			var actionName = ControllerContext.ActionDescriptor.DisplayName;
+			Exception fault = new System.Net.Sockets.SocketException(errorCode: 10013);
 
-                var chaosPolicy = MonkeyPolicy.InjectExceptionAsync(with 
-                => with.Fault(fault)
-                    .InjectionRate(0.15)
-                    .Enabled(true));
-                var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
-                return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
-            }
-        }
+			var chaosPolicy = MonkeyPolicy.InjectExceptionAsync(with
+			=> with.Fault(fault)
+			    .InjectionRate(0.15)
+			    .Enabled(true));
+			var mix = Policy.WrapAsync(GetPolicy(), chaosPolicy);
+			return await mix.ExecuteAsync((ct) => GetForecasts(ct), CancellationToken.None);
+		}
 
-        private IAsyncPolicy GetPolicy() {
-            // Fill inn answer by changing code from here
-            var retries = 0;
-            Program.ConfiguredRetries.Set(retries);
-            Program.ConfiguredRetries.Publish();
-            var policy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
+		private IAsyncPolicy GetPolicy()
+		{
+			// Fill inn answer by changing code from here
+			var retries = 0;
+			Program.ConfiguredRetries.Set(retries);
+			Program.ConfiguredRetries.Publish();
+			var policy = Policy.Handle<Exception>().RetryAsync(retries, (ex, attempt) => Program.ExecutedRetries.Inc());
 
-            // to here, anything outside of that is cheating.
-            // But cheating is encouraged as long as the rationale and code
-            // is shared with the workshop :)
-            // Also, if you cheat or add something fun, consider making a PR for a new 
-            // challenge to the workshop!
-            return policy; 
-        }
+			// to here, anything outside of that is cheating.
+			// But cheating is encouraged as long as the rationale and code
+			// is shared with the workshop :)
+			// Also, if you cheat or add something fun, consider making a PR for a new 
+			// challenge to the workshop!
+			return policy;
+		}
 
-        private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)
-        {
-            await Task.Delay(20, ct);
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = rng.Next(-20, 55),
-                Summary = Summaries[rng.Next(Summaries.Length)]
-            })
-            .ToArray();
-        }
-    }
+		private async Task<IEnumerable<WeatherForecast>> GetForecasts(CancellationToken ct)
+		{
+			await Task.Delay(20, ct);
+			var rng = new Random();
+			return Enumerable.Range(1, 5).Select(index => new WeatherForecast
+			{
+				Date = DateTime.Now.AddDays(index),
+				TemperatureC = rng.Next(-20, 55),
+				Summary = Summaries[rng.Next(Summaries.Length)]
+			})
+			.ToArray();
+		}
+	}
 }

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>api_under_test</RootNamespace>
     <UserSecretsId>6398648b-86d3-43d3-80b1-d0e6f9501819</UserSecretsId>
   </PropertyGroup>

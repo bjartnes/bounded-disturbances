@@ -15,7 +15,7 @@
         },
         {
             "label": "run and watch web api",
-            "command": "dotnet watch -p api-under-test/api-under-test.csproj run",
+            "command": "dotnet watch --project api-under-test/api-under-test.csproj run",
             "type": "shell",
             "group": "build",
             "problemMatcher": "$msCompile"

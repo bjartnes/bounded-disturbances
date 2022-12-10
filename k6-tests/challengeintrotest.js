@@ -5,6 +5,7 @@
  
 import http from "k6/http";
 import { check } from "k6";
+import { Rate, Counter } from "k6/metrics";
 
 export let options = {
   vus       : 50,
@@ -15,15 +16,17 @@ export let options = {
   thresholds: {
     '200 OK rate': ['rate>0.99'],
     'http_req_duration': ['p(95)<1000'],
-    "Errors": ["rate<0.01"],
-    "Content OK": ["count>200"]
+    "200 OK count": ["count>200"]
   }
 }
 
+const myOkRate = new Rate("200 OK rate");
+const myOkCounter = new Counter("200 OK count");
+
 export default function() {
-    
   let response = http.get("http://localhost:5000/weatherforecast_intro");
-
+  let resOk = response.status === 200;
+  myOkRate.add(resOk);
+  myOkCounter.add(resOk);
   check( response, { "200 OK": res => res.status === 200 } );
-
 };

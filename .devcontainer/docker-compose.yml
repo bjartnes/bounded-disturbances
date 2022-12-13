@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    platform: linux/x86_64
     ports: 
       - "5000:5000"
       - "5001:5001"
@@ -15,6 +16,7 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
+    platform: linux/x86_64
     restart: always 
     ports:
       - "3000:3000"

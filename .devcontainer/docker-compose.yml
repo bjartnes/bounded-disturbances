@@ -5,17 +5,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    ports: 
-      - "5000:5000"
+    ports:
+      - "5555:5000"
       - "5001:5001"
       - "1234:1234"
-    command: /bin/sh -c "while sleep 1000; do :; done"  
+    command: /bin/sh -c "while sleep 1000; do :; done"
     volumes:
       - ../:/workspace:cached
   grafana:
     image: grafana/grafana
     container_name: grafana
-    restart: always 
+    restart: always
     ports:
       - "3000:3000"
     environment:
@@ -30,14 +30,14 @@ services:
       - GF_SECURITY_COOKIE_SAMESITE=disabled
       - GF_SECURITY_ALLOW_EMBEDDING=true
   telegraf:
-    image: telegraf 
-    container_name: telegraf 
-    restart: always 
+    image: telegraf
+    container_name: telegraf
+    restart: always
     volumes:
       - ./../telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro
   influxdb:
     image: influxdb:1.8.4
-    container_name: influxdb 
+    container_name: influxdb
     restart: always
     ports:
       - "8086:8086"

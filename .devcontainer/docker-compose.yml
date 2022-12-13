@@ -16,7 +16,6 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
-    platform: linux/x86_64
     restart: always 
     ports:
       - "3000:3000"
@@ -34,6 +33,7 @@ services:
   telegraf:
     image: telegraf 
     container_name: telegraf 
+    platform: linux/x86_64
     restart: always 
     volumes:
       - ./../telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro

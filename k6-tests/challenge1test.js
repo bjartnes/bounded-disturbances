@@ -29,7 +29,7 @@ const myOkRate = new Rate("200 OK rate");
 const myOkCounter = new Counter("200 OK count");
 
 export default function() {
-  let response = http.get("http://localhost:5000/weatherforecast_challenge1");
+  let response = http.get("http://localhost:5555/weatherforecast_challenge1");
   let resOk = response.status === 200;
   myOkRate.add(resOk);
   myOkCounter.add(resOk);

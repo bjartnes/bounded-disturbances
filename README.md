@@ -24,7 +24,7 @@ If you struggle to understand something in this README, I consider it a usabilit
 On mac, use <kbd>⌘</kbd> instead of <kbd>ctrl</kbd>.
 
 (There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Beware of ports that are already in use etc)
-You should not have anything running at port 3000, 5000, 5001, 8086.
+You should not have anything running at port 3000, 5555, 5001, 8086.
 
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
@@ -59,7 +59,7 @@ Run the task (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>) to run tasks and ru
 # Starting the API
 It should work to use <kbd>CTRL</kbd>+<kbd>SHIFT</kbd> + <kbd>P</kbd> and select "Run Build Task" and then select - "watch" to start the API.
  
-The API will reload once changed and should be exposed at http://localhost:5000/weatherforecast_intro
+The API will reload once changed and should be exposed at http://localhost:5555/weatherforecast_intro
 
 The watch and test commands runs in different terminal tabs, see the red ring in the bottom picture of K6 in this README to see how to select the tab if you can not see anything happenning as you run tasks.
 

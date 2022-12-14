@@ -4,7 +4,7 @@ tasks:
   - command: |
       docker-compose -f .devcontainer/docker-compose.yml up
 ports:
-  - port: 5000
+  - port: 5555
     onOpen: open-browser
   - port: 3000
     onOpen: open-browser

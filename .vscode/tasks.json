@@ -37,7 +37,7 @@
         },
         {
             "label": "ping api",
-            "command": "wget http://localhost:5000/weatherforecast_intro",
+            "command": "wget http://localhost:5555/weatherforecast_intro",
             "type": "shell",
             "group": "test",
         },

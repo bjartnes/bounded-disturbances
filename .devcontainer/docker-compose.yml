@@ -5,6 +5,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    platform: linux/x86_64
     ports: 
       - "5000:5000"
       - "5001:5001"
@@ -32,6 +33,7 @@ services:
   telegraf:
     image: telegraf 
     container_name: telegraf 
+    platform: linux/x86_64
     restart: always 
     volumes:
       - ./../telegraf-volume/telegraf.conf:/etc/telegraf/telegraf.conf:ro

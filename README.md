@@ -28,7 +28,7 @@ You should not have anything running at port 3000, 5555, 5001, 8086.
 
 To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
 
-Install docker or https://rancherdesktop.io/ (Not both, I've had issues) . On Windows, use the WSL2 backend.
+Install docker dekstop. On Windows, use the WSL2 backend.
 
 Open VS Code and choose "File" - "Open Folder" (<kbd>CTRL</kbd> <kbd>K</kbd> + <kbd>CTRL</kbd> <kbd>O</kbd>) and select the folder where you cloned the repo. Wait for the popup and choose "Reopen folder to develop in a container".
 

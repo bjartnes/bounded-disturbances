@@ -26,11 +26,9 @@ let params = {
 }
 
 export default function() {
-    
   let res = http.get("http://172.17.0.1:5555/weatherforecast_challenge21", params);
   TrendRTT.add(res.timings.duration);
   let resOk = res.status === 200;
   myOkRate.add(resOk);
   myOkCounter.add(resOk);
-  
 };

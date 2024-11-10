@@ -8,15 +8,15 @@ export let options = {
   rps       : 200, //max requests per second, increase to go faster
   insecureSkipTLSVerify : true, //ignore that localhost cert doesn't match host.docker.internal
   thresholds: {
-    '200 OK rate': ['rate>0.999'],
-    '200 OK count': ['count>200'],
+    '_200_OK_rate': ['rate>0.999'],
+    '_200_OK_count': ['count>200'],
     'http_req_duration': ['p(95)<200']
  }
 }
 
 export let TrendRTT = new Trend("RTT");
-const myOkRate = new Rate("200 OK rate");
-const myOkCounter = new Counter("200 OK count");
+const myOkRate = new Rate("_200_OK_rate");
+const myOkCounter = new Counter("_200_OK_count");
 
 export default function() {
   let response = http.get("http://localhost:5555/weatherforecast_challenge4");

@@ -29,6 +29,7 @@ namespace api_under_test.Controllers
         [HttpGet]
         public async Task<IEnumerable<WeatherForecast>> Get()
         {
+
            var chaosPolicy = MonkeyPolicy.InjectLatencyAsync(with =>
                 with.Latency(TimeSpan.FromSeconds(1))
                     .InjectionRate(0.10) // 10 % 

@@ -43,7 +43,7 @@ namespace api_under_test.Controllers
             // https://docs.microsoft.com/en-us/dotnet/architecture/microservices/implement-resilient-applications/use-httpclientfactory-to-implement-resilient-http-requests#httpclient-lifetimes
             var useHttpClientFactory = true; 
             if (useHttpClientFactory) {
-                var client = _clientFactory.CreateClient(); 
+                using var client = _clientFactory.CreateClient(); 
                 return await client.GetStringAsync("http://172.17.0.1:5555/weatherforecast_intro");
             } else {
                 using var client = new HttpClient(); 

@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Polly" Version="7.2.0" />
     <PackageReference Include="Polly.Contrib.Simmy" Version="0.3.0" />
-    <PackageReference Include="prometheus-net.AspNetCore" Version="3.5.0" />
-    <PackageReference Include="prometheus-net.DotNetRuntime" Version="3.3.1" />
+    <PackageReference Include="prometheus-net.AspNetCore" Version="8.2.1" />
+    <PackageReference Include="prometheus-net.DotNetRuntime" Version="4.4.1" />
   </ItemGroup>
 </Project>

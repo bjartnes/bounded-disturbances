@@ -21,6 +21,8 @@ For a background on why we have been working on this in NRK see https://aka.ms/c
 On mac, use <kbd>⌘</kbd> instead of <kbd>ctrl</kbd>.
 
 ## Create the codespace
+This does not work properly with Firefox... 
+
 <img width="773" alt="image" src="https://github.com/user-attachments/assets/c74e7d43-72c3-43d3-9a40-018de326fb94">
 
 ## Setting up dashboards and datasources

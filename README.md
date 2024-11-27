@@ -17,33 +17,9 @@ described here https://code.visualstudio.com/docs/remote/containers.
 For an intro to Polly - which could be a nice background - I would recommend watching  https://www.youtube.com/watch?v=2kfCXMoVCqM and perhaps code-along with the examples here https://github.com/App-vNext/Polly-Samples/
 
 For a background on why we have been working on this in NRK see https://aka.ms/cloudstories-3
-  
-# How to run
-
-If you struggle to understand something in this README, I consider it a usability bug, so please submit a github issue, ping me on twitter or something. 
-On mac, use <kbd>⌘</kbd> instead of <kbd>ctrl</kbd>.
-
-(There is a troubleshooting chapter on the bottom of this document with some errors and solutions people have encountered. Beware of ports that are already in use etc)
-You should not have anything running at port 3000, 5555, 5001, 8086.
-
-To run the workshop clone the repo, install VS Code from https://code.visualstudio.com/
-
-Install docker dekstop. On Windows, use the WSL2 backend.
-
-Open VS Code and choose "File" - "Open Folder" (<kbd>CTRL</kbd> <kbd>K</kbd> + <kbd>CTRL</kbd> <kbd>O</kbd>) and select the folder where you cloned the repo. Wait for the popup and choose "Reopen folder to develop in a container".
-
-![Reopen folder to develop in a container](https://user-images.githubusercontent.com/1174441/92221305-9082f880-ee9d-11ea-8e31-28dd9729b110.png)
-
-You will get a lot of these ![install  extension](https://user-images.githubusercontent.com/1174441/82751431-85590080-9db7-11ea-8a6a-7728a0a1c877.png)
-asking you to install extensions, and then asked to reload the folder in the Docker images and just go yes, yes, sure, reload etc. And wait when it asks you to, downloading and building all the images can take a while the first time.
-
-If the docker images for some reason does not build and open automatically hit ctrl+shift+p and type "remote-containers Open work" - or enough for the autocomplete to find the following task: 
-
-![Open the folder in the workspace](https://user-images.githubusercontent.com/1174441/82751510-04e6cf80-9db8-11ea-9040-47e122c98e11.png)
-
-### On Windows
-Depending on versions of docker and WSL you might have to share the repo in Docker
-![Turn on filesharing](https://user-images.githubusercontent.com/1174441/82738627-4c7a4680-9d39-11ea-9b6a-ab42b9accec3.png)
+# Setting it up
+## Create the codespace
+<img width="773" alt="image" src="https://github.com/user-attachments/assets/c74e7d43-72c3-43d3-9a40-018de326fb94">
 
 ## Setting up dashboards and datasources
 

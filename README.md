@@ -18,6 +18,8 @@ For an intro to Polly - which could be a nice background - I would recommend wat
 
 For a background on why we have been working on this in NRK see https://aka.ms/cloudstories-3
 # Setting it up
+On mac, use <kbd>⌘</kbd> instead of <kbd>ctrl</kbd>.
+
 ## Create the codespace
 <img width="773" alt="image" src="https://github.com/user-attachments/assets/c74e7d43-72c3-43d3-9a40-018de326fb94">
 

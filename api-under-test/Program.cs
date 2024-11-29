@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Prometheus;
@@ -25,16 +26,25 @@ namespace api_under_test
         public static Gauge GC2= Metrics.CreateGauge("GC2", "How many");
 
         private static Timer _timer;
-
+        private static KestrelMetricServer _kestrelMetricServer;
         public static void Main(string[] args)
         {
             var collector = DotNetRuntimeStatsBuilder.Default().StartCollecting();
-            using var server = new Prometheus.KestrelMetricServer(port: 1234);
-            
-            server.Start();
+            _kestrelMetricServer = new Prometheus.KestrelMetricServer(port: 1234);
+            _kestrelMetricServer.Start();
             
             _timer = new Timer(LogNetworkAndGcInfo, null, TimeSpan.Zero, TimeSpan.FromSeconds(1));
-            CreateHostBuilder(args).Build().Run();
+            var hostBuilder = CreateHostBuilder(args);
+            var host = hostBuilder.Build();
+            using var serviceScope = host.Services.CreateScope();
+            var life = serviceScope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
+            life.ApplicationStopping.Register(() => { 
+                _kestrelMetricServer?.Stop();
+                Console.WriteLine("Stopped metricserver");
+            });
+
+            host.Run();
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
